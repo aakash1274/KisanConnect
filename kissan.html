@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kisan Connect: Advanced Marketplace for Farmers and Customers">
+    <meta name="keywords" content="Farming, Fresh Produce, Dairy, Agricultural Tools">
+    <meta name="author" content="Kisan Connect Team">
+    <title>Kisan Connect | Advanced Marketplace</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('https://example.com/background.jpg'); /* Replace with your background image URL */
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+        }
+        header {
+            background: rgba(46, 137, 130, 0.8);
+            color: #ffffff;
+            text-align: center;
+            padding: 70px 0;
+            position: relative;
+        }
+        header img {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            width: 100px; /* Adjust logo size */
+        }
+        header h1 {
+            font-size: 4rem;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 1.5rem;
+        }
+        .navbar {
+            background-color: #0d091e;
+        }
+        .navbar .nav-link {
+            color: white !important;
+            font-weight: 500;
+        }
+        .register-login {
+            background: #ff4757;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .dashboard {
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .dashboard .dashboard-item {
+            background: linear-gradient(to bottom right, #38ef7d, #11998e);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            margin: 10px;
+            border: 2px solid #fff;
+        }
+        .dashboard .dashboard-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .categories {
+            padding: 60px 20px;
+        }
+        .category-box {
+            background: linear-gradient(to right, #8e44ad, #3498db);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+            margin: 10px;
+            border: 2px solid #fff;
+        }
+        .category-box:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            background: #11998e;
+            color: white;
+            padding: 20px 0;
+        }
+        .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .product {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0 .3s;
+            margin: 10px;
+            border: 2px solid #fff;
+        }
+        .product:hover {
+            transform: scale(1.05);
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .scrolling-images {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            margin: 20px 0;
+        }
+        .scrolling-images img {
+            display: inline-block;
+            width: 100%;
+            height: auto;
+            animation: scroll 20s linear infinite;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        .contract-farming {
+            padding: 40px 20px;
+            background-color: #f8f9fa;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .testimonials {
+            padding: 40px 20px;
+            background-color: #e9ecef;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <img src="" alt="Kisan Connect Logo"> <!-- Replace with your logo URL -->
+            <a class="navbar-brand text-white" href="#">Kisan Connect</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="kissan.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </div>
+            <a href="register.html" class="register-login">Register/Login</a>
+        </div>
+    </nav>
+
+    <!-- Header with Image -->
+    <header>
+        <img src="https://example.com/header-image.jpg" alt="Header Image"> <!-- Replace with your header image URL -->
+        <h1>Welcome to Kisan Connect</h1>
+        <p>Empowering Farmers with Technology</p>
+    </header>
+
+    <!-- Scrolling Images Section -->
+    <div class="scrolling-images">
+        <img src="https://example.com/image.jpg" alt="Image 1"> <!-- Replace with your image URLs -->
+        <img src="https://example.com/image2.jpg" alt="Image 2">
+        <img src="https://example.com/image3.jpg" alt="Image 3">
+    </div>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="dashboard">
+        <div class="container">
+            <h2 class="text-center mb-5">Dashboard</h2>
+            <div class="button-container">
+                <div class="dashboard-item" onclick="redirectTo('market-trends.html')">
+                    <i class="fas fa-chart-line icon"></i>
+                    Market Trends
+                </div>
+                <div class="dashboard-item" onclick="redirectTo('weather-updates.html')">
+                    <i class="fas fa-cloud-sun icon"></i>
+                    Weather Updates
+                </div>
+                <div class="dashboard-item" onclick="redirectTo('equipment-rentals.html')">
+                    <i class="fas fa-tools icon"></i>
+                    Equipment Rentals
+                </div>
+                <div class="dashboard-item" onclick="redirectTo('crop-suggestions.html')">
+                    <i class="fas fa-seedling icon"></i>
+                    Crop Suggestions
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What is Contract Farming Section -->
+    <section class="contract-farming">
+        <h2>What is Contract Farming?</h2>
+        <p>Contract farming is an agreement between farmers and buyers to produce a specific quantity of a crop at a predetermined price. This arrangement helps farmers secure a market for their produce while providing buyers with a reliable source of supply. It often includes provisions for technical assistance, inputs, and sometimes financing, ensuring that both parties benefit from the arrangement.</p>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Categories</h2>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-box" onclick="redirectTo('organic-fruits.html')">
+                        <i class="fas fa-apple-alt icon"></i>
+                        Organic Fruits
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-box" onclick="redirectTo('fresh-vegetables.html')">
+                        <i class="fas fa-carrot icon"></i>
+                        Fresh Vegetables
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-box" onclick="redirectTo('poultry-products.html')">
+                        <i class="fas fa-egg icon"></i>
+                        Poultry Products
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-box" onclick="redirectTo('seeds-and-fertilizers.html')">
+                        <i class="fas fa-leaf icon"></i>
+                        Seeds & Fertilizers
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-box" onclick="redirectTo('dairy-products.html')">
+                        <i class="fas fa-glass-whiskey icon"></i>
+                        Dairy Products
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-box" onclick="redirectTo('exotic-vegetables.html')">
+                        <i class="fas fa-pepper-hot icon"></i>
+                        Exotic Vegetables
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-box" onclick="redirectTo('cold-pressed-oils.html')">
+                        <i class="fas fa-oil-can icon"></i>
+                        Cold Pressed Oils
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="category-box" onclick="redirectTo('fresh-bakery.html')">
+                        <i class="fas fa-bread-slice icon"></i>
+                        Fresh Bakery
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="text-center mb-5">Testimonials</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <blockquote class="blockquote text-center">
+                        <p class="mb-0">" Kisan Connect has transformed my farming experience. The quality of produce is exceptional!"</p>
+                        <footer class="blockquote-footer">Rajesh Kumar, Farmer</footer>
+                    </blockquote>
+                </div>
+                <div class="col-md-4">
+                    <blockquote class="blockquote text-center">
+                        <p class="mb-0">"I love the convenience of ordering fresh fruits and vegetables online. Highly recommend!"</p>
+                        <footer class="blockquote-footer">Anita Sharma, Customer</footer>
+                    </blockquote>
+                </div>
+                <div class="col-md-4">
+                    <blockquote class="blockquote text-center">
+                        <p class="mb-0">"The support from Kisan Connect has been invaluable. They truly care about farmers!"</p>
+                        <footer class="blockquote-footer">Suresh Patel, Farmer</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2025 Kisan Connect. All rights reserved.</p>
+            <p>Customer Support: 1800 267 0997 | Email: customercare@kisanconnect.in</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function redirectTo(page) {
+            window.location.href = page;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

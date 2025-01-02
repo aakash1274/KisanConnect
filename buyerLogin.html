@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        /* Add your styles here */
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="kissan.html">Agriculture Marketplace</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="buyerLogin.html">Buyer Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="farmerLogin.html">Farmer Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="my-form">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Buyer Login</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="buyerDashboard.html" method="post">
+                                <div class="form-group">
+                                    <label for="email"><b>Email</b></label>
+                                    <input type="email" id="email" class="form-control" name="email" placeholder="Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password"><b>Password</b></label>
+                                    <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
+                                </div>
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary" name="login" value="Login">Login</button>
+                                </div>
+                                <div class="col-md-6 offset-md-4">
+                                    <label id="forgotPassword"><a href="buyerForgotPassword.html"><b> Forgot your password?</b></a></label>
+                                    <br>
+                                    <label id="account"><a href="buyerRegistration.html"><b>Create New Account</b></a></label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-center mt-5">
+        <p>&copy; 2023 Agriculture Marketplace. All rights reserved.</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

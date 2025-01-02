@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Orders</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        /* Add your styles here */
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Buyer Orders</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="buyerDashboard.html">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="buyerProfile.html">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="buyerLogout.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container mt-4">
+        <h2>Your Orders</h2>
+        <div class="card">
+            <div class="card-header">
+                Order History
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#1001</td>
+                            <td>2023-10-01</td>
+                            <td>Shipped</td>
+                            <td>$100.00</td>
+                        </tr>
+                        <tr>
+                            <td>#1002</td>
+                            <td>2023-10-05</td>
+                            <td>Delivered</td>
+                            <td>$150.00</td>
+                        </tr>
+                        <tr>
+                            <td>#1003</td>
+                            <td>2023-10-10</td>
+                            <td>Pending</td>
+                            <td>$200.00</td>
+                        </tr>
+                        <tr>
+                            <td>#1004</td>
+                            <td>2023-10-15</td>
+                            <td>Cancelled</td>
+                            <td>$0.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="col-md-6 offset-md-4">
+                    <a href="buyerDashboard.html" class="btn btn-primary">Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="text-center mt-5">
+        <p>&copy; 2023 Agriculture Marketplace. All rights reserved.</p>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

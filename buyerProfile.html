@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Buyer Profile</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="buyerDashboard.html">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="buyerOrders.html">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="buyerLogout.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container mt-4">
+        <h2>Your Profile</h2>
+        <form action="buyerDashboard.html" method="post">
+            <div class="form-group">
+                <label for="full_name"><b>Full Name</b></label>
+                <input type="text" id="full_name" class="form-control" name="name" placeholder="Enter Your Name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone_number"><b>Phone Number</b></label>
+                <input type="text" id="phone_number" class="form-control" name="phonenumber" placeholder="Phone Number" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><b>Email Address</b></label>
+                <input type="email" id="email" class="form-control" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </div>
+        </form>
+    </main>
+    <footer class="text-center mt-5">
+        <p>&copy; 2023 Agriculture Marketplace. All rights reserved.</p>
+    </footer>
+</body>
+</html>

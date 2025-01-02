@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        /* Add your styles here */
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Add Product</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="farmerDashboard.html">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="farmerProducts.html">My Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="farmerLogout.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container mt-4">
+        <h2>Add New Product</h2>
+        <form action="addProduct.html" method="post">
+            <div class="form-group">
+                <label for="product_name"><b>Product Name</b></label>
+                <input type="text" id="product_name" class="form-control" name="product_name" placeholder="Enter product name" required>
+            </div>
+            <div class="form-group">
+                <label for="price"><b>Price</b></label>
+                <input type="number" id="price" class="form-control" name="price" placeholder="Enter price" required>
+            </div>
+            <div class="form-group">
+                <label for="quantity"><b>Quantity</b></label>
+                <input type="number" id="quantity" class="form-control" name="quantity" placeholder="Enter quantity" required>
+            </div>
+            <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary" name="add_product" value="Add Product">Add Product</button>
+            </div>
+        </form>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16. 0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

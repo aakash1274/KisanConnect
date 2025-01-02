@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        /* Add your styles here */
+    </style>
+</head>
+<body>
+    <main class="my-form">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Farmer Registration</h4>
+                        </div>
+                        <div class="card-body">
+                            <form action="farmerRegistration.html" method="post">
+                                <div class="form-group">
+                                    <label for="full_name"><b>Full Name</b></label>
+                                    <input type="text" id="full_name" class="form-control" name="name" placeholder="Enter Your Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"><b>Email Address</b></label>
+                                    <input type="email" id="email" class="form-control" name="email" placeholder="Email Address" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone_number"><b>Phone Number</b></label>
+                                    <input type="text" id="phone_number" class="form-control" name="phonenumber" placeholder="Phone Number" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password"><b>Password</b></label>
+                                    <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm_password"><b>Confirm Password</b></label>
+                                    <input type="password" id="confirm_password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
+                                </div>
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary" name="register" value="Register">Register</button>
+                                </div>
+                                <div class="col-md-6 offset-md-4">
+                                    <label id="account"><a href="farmerLogin.html"><b>Already have an account? Login</b></a></label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

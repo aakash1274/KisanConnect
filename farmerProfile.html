@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        /* Add your styles here */
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Farmer Profile</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="farmerDashboard.html">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="farmerProducts.html">My Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="farmerLogout.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container mt-4">
+        <h2>Your Profile</h2>
+        <form action="farmerProfile.html" method="post">
+            <div class="form-group">
+                <label for="full_name"><b>Full Name</b></label>
+                <input type="text" id="full_name" class="form-control" name="name" value="[Farmer Name]" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><b>Email Address</b></label>
+                <input type="email" id="email" class="form-control" name="email" value="[Farmer Email]" required>
+            </div>
+            <div class="form-group">
+                <label for="phone_number"><b>Phone Number</b></label>
+                <input type="text" id="phone_number" class="form-control" name="phonenumber" value="[Farmer Phone Number]" required>
+            </div>
+            <div class="form-group">
+                <label for="password"><b>Password</b></label>
+                <input type="password" id="password" class="form-control" name="password" placeholder="Leave blank to keep current password">
+            </div>
+            <div class="form-group">
+                <label for="confirm_password"><b>Confirm Password</b></label>
+                <input type="password" id="confirm_password" class="form-control" name="confirm_password" placeholder="Leave blank to keep current password">
+            </div>
+            <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary" name="update" value="Update">Update Profile</button>
+            </div>
+        </form>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
