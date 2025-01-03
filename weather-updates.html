@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisan Connect - Weather & Market Data</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .search-container {
+            position: relative;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-input {
+            width: 50%;
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-suggestions {
+            position: absolute;
+            top: 45px;
+            width: 50%;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .suggestion {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .suggestion:hover {
+            background-color: #f0f0f0;
+        }
+
+        .suggestion img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #4CAF50;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .data-table {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #4CAF50;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <h1>Kisan Connect</h1>
+</header>
+
+<div class="search-container">
+    <input type="text" class="search-input" id="crop-search" placeholder="Search for a crop..." oninput="showSuggestions()">
+    <div class="search-suggestions" id="search-suggestions">
+        <!-- Suggestions will appear here dynamically -->
+    </div>
+</div>
+
+<!-- Main Content -->
+<main>
+
+    <!-- Weather Section -->
+    <section id="weather" class="data-table">
+        <h2>Current Weather Conditions</h2>
+        <table>
+            <tr>
+                <th>Location</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>Rainfall</th>
+                <th>Wind Speed</th>
+                <th>UV Index</th>
+            </tr>
+            <tr>
+                <td id="location">Loading...</td>
+                <td id="temperature">-- °C</td>
+                <td id="humidity">-- %</td>
+                <td id="rainfall">-- mm</td>
+                <td id="windspeed">-- km/h</td>
+                <td id="uvindex">--</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Seasonal Forecast Section -->
+    <section id="forecast" class="data-table">
+        <h2>Seasonal Forecast</h2>
+        <table>
+            <tr>
+                <th>Expected Temperature</th>
+                <th>Rainfall Forecast</th>
+                <th>Frost Risk</th>
+            </tr>
+            <tr>
+                <td id="season-temp">-- °C</td>
+                <td id="season-rain">-- mm</td>
+                <td id="frost-risk">Low/Medium/High</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Crop Data Section -->
+    <section id="market" class="data-table">
+        <h2>Crop Data</h2>
+        <table>
+            <tr>
+                <th>Crop</th>
+                <th>Image</th>
+                <th>Current Price (₹)</th>
+                <th>Available Quantity (kg)</th>
+                <th>Sales for the Month</th>
+            </tr>
+            <tr>
+                <td>Tomato</td>
+                <td><img src="tomato.jpg" alt="Tomato" style="width:50px;"></td>
+                <td id="tomato-price">--</td>
+                <td id="tomato-quantity">--</td>
+                <td id="tomato-sales">--</td>
+            </tr>
+            <tr>
+                <td>Rice</td>
+                <td><img src="rice.jpg" alt="Rice" style="width:50px;"></td>
+                <td id="rice-price">--</td>
+                <td id="rice-quantity">--</td>
+                <td id="rice-sales">--</td>
+            </tr>
+            <tr>
+                <td>Wheat</td>
+                <td><img src="wheat.jpg" alt="Wheat" style="width:50px;"></td>
+                <td id="wheat-price">--</td>
+                <td id="wheat-quantity">--</td>
+                <td id="wheat-sales">--</td>
+            </tr>
+        </table>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Kisan Connect. All rights reserved.</p>
+</footer>
+
+<script>
+    function showSuggestions() {
+        const input = document.getElementById('crop-search').value.toLowerCase();
+        const suggestionsBox = document.getElementById('search-suggestions');
+        const suggestions = [
+            { name: 'Tomato', image: 'tomato.jpg' },
+            { name: 'Rice', image: 'rice.jpg' },
+            { name: 'Wheat', image: 'wheat.jpg' }
+        ];
+
+        const filteredSuggestions = suggestions.filter(suggestion =>
+            suggestion.name.toLowerCase().includes(input)
+        );
+
+        suggestionsBox.innerHTML = '';
+        filteredSuggestions.forEach(suggestion => {
+            const suggestionDiv = document.createElement('div');
+            suggestionDiv.className = 'suggestion';
+            suggestionDiv.innerHTML = `
+                <img src="${suggestion.image}" alt="${suggestion.name}">
+                <span>${suggestion.name}</span>
+            `;
+            suggestionsBox.appendChild(suggestionDiv);
+        });
+
+        suggestionsBox.style.display = filteredSuggestions.length ? 'block' : 'none';
+    }
+</script>
+
+</body>
+</html>

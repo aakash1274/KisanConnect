@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisan Connect - Equipment Rental</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(90deg, #4CAF50, #3e8e41);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #d1e0e0;
+        }
+
+        #intro {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 80%;
+        }
+
+        #search {
+            text-align: center;
+            margin: 40px auto;
+            max-width: 80%;
+        }
+
+        #search form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        #search label {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        #search select, #search input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        #equipment-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px;
+        }
+
+        .equipment-item {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            width: 320px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .equipment-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .equipment-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .equipment-item button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color ```html
+            0.3s, transform 0.3s;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .equipment-item button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        #rental-terms, #reviews, #booking {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            max-width: 80%;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        ul {
+            line-height: 1.6;
+        }
+
+        /* New styles for enhanced UI */
+        .equipment-item h3 {
+            color: #4CAF50;
+        }
+
+        .equipment-item p {
+            margin: 10px 0;
+        }
+
+        #search button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        #search button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        /* Adding a gradient background to the intro section */
+        #intro {
+            background: linear-gradient(135deg, #f4f4f9, #e0e0e0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Kisan Connect</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/equipment">Equipment Rentals</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="intro">
+        <h1>Welcome to Our Equipment Rental Platform</h1>
+        <p>Rent farming machinery at affordable prices. Access the best equipment when you need it, without the upfront cost!</p>
+    </section>
+
+    <section id="search">
+        <h2>Find the Perfect Equipment</h2>
+        <form action="/search" method="GET">
+            <label for="category">Category:</label>
+            <select name="category" id="category">
+                <option value="tractors">Tractors</option>
+                <option value="harvesters">Harvesters</option>
+                <option value="sprayers">Sprayers</option>
+                <option value="irrigation">Irrigation Systems</option>
+                <option value="seeders">Seeders</option>
+            </select>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" placeholder="Enter your location">
+
+            <label for="duration">Rental Duration:</label>
+            <select name="duration" id="duration">
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+                <option value="seasonal">Seasonal</option>
+            </select>
+
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <section id="equipment-list">
+        <h2>Available Equipment</h2>
+
+        <div class="equipment-item">
+            <img src="tractor.jpg" alt="Tractor">
+            <h3>Tractor</h3>
+            <p>Perfect for plowing, tilling, and transporting materials.</p>
+            <p><strong>Price:</strong> $150/day</p>
+            <p><strong>Available Locations:</strong> New York, California, Texas</p>
+            <button onclick="bookEquipment('Tractor')">Book Now</button>
+        </div>
+
+        <div class="equipment-item">
+            <img src="harvester.jpg" alt="Harvester">
+            <h3>Harvester</h3>
+            <p>Efficiently harvest your crops with our state-of-the-art machines.</p>
+            <p><strong>Price:</strong> $500/day</p>
+            <p><strong>Available Locations:</strong> Florida, Nebraska, Kansas</p>
+            <button onclick="bookEquipment('Harvester')">Book Now</button>
+        </div>
+
+        <div class="equipment-item">
+            <img src="sprayer.jpg" alt="Sprayer">
+            <h3>Sprayer</h3>
+            <p>Ideal for applying fertilizers and pesticides evenly across your fields.</p>
+            <p><strong>Price:</strong> $100/day</p>
+            <p><strong>Available Locations:</strong> Illinois, Ohio, Michigan</p>
+            <button onclick="bookEquipment('Sprayer')">Book Now</button>
+        </div>
+
+        <div class="equipment-item">
+            <img src="irrigation.jpg" alt="Irrigation System">
+            <h3>Irrigation System</h3>
+            <p>Efficiently water your crops with our advanced irrigation solutions.</p>
+            <p><strong>Price:</strong> $200/day</p>
+            <p><strong>Available Locations:</strong> Arizona, Nevada, Texas</p>
+            <button onclick="bookEquipment('Irrigation System')">Book Now</button>
+        </div>
+    </section>
+
+    <section id="rental-terms">
+        <h2>Rental Terms & Conditions</h2>
+        <ul>
+            <li><strong>Rental Duration:</strong> Choose from daily, weekly, or seasonal rental options.</li>
+            <li><strong>Pricing:</strong> Prices are based on the selected rental period. Additional delivery charges may apply.</li>
+            <li><strong>Booking:</strong> Equipment can be booked online via the platform. A refundable deposit may be required.</li>
+            <li><strong>Insurance:</strong> Optional insurance can be purchased to cover damages during the rental period.</li>
+            <li><strong>Maintenance:</strong> The rental company ensures all equipment is in top working condition. However, if issues arise, customer support is available 24/7.</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Kisan Connect. All rights reserved.</p>
+        <p>
+            <a href="/privacy-policy" style="color: white; text-decoration: underline;">Privacy Policy</a> |
+            <a href="/terms" style="color: white; text-decoration: underline;">Terms of Service</a>
+        </p>
+    </footer>
+
+    <script>
+        // Function to handle equipment booking
+        function bookEquipment(equipmentName) {
+            alert(You have chosen to book the ${equipmentName}. Please proceed to the booking page.);
+            // Redirect to booking page or handle further logic here
+        }
+    </script>
+</body>
+</html>
