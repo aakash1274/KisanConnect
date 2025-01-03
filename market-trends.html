@@ -8,73 +8,326 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .sticky {
-            position: fixed;
-            top: 0;
-            width: 100%;
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #f4f4f4;
         }
 
-        .sticky + .content {
-            padding-top: 60px;
+        .navbar {
+            background-color: green;
+        }
+
+        .navbar a {
+            color: #ffd700;
+            font-weight: bold;
+            margin-right: 20px; /* Increased spacing */
+        }
+
+        .navbar a:hover {
+            color: white;
+        }
+
+        .horizontal-bar {
+            background-color: #e6f7d4;
+            height: 10px;
+            margin: 20px 0;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+
+        .graph-container {
+            margin-top: 30px;
+        }
+
+        .selection-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .selection-section button {
+            margin: 5px;
+        }
+
+        .search-bar {
+            margin: 20px auto;
+            max-width: 500px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 10px 15px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: darkgreen;
+        }
+
+        .table img {
+            width: 50px; /* Set a fixed width for images */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 10px; /* Space between image and text */
+        }
+
+        .content-section {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            margin-top: 20px;
+            color: green;
+        }
+
+        .table {
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table th, .table td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #e6f7d4;
         }
     </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="sticky">
-                    <div class="jumbotron jumbotron-fluid" style="background-color: #f8f9fa;">
-                        <div class="container">
-                            <h1 class="display-4">Agriculture Industry in India</h1>
-                            <p class="lead">Explore the market size, trends, and opportunities of the Indian agriculture sector.</p>
-                            <a class="btn btn-primary" href="#" role="button">Buy Now</a>
-                        </div>
-                    </div>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action active">Home</a>
-                        <a href="#" class="list-group-item list-group-item-action">Market Analysis</a>
-                        <a href="#" class="list-group-item list-group-item-action">Agricultural Policies</a>
-                        <a href="#" class="list-group-item list-group-item-action">Trends</a>
-                        <a href="#" class="list-group-item list-group-item-action">Contact Us</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <div class="content">
-                    <h2>Market Overview</h2>
-                    <p>The Indian agriculture industry is one of the largest in the world, contributing significantly to the economy.</p>
-                    <h3>Key Statistics</h3>
-                    <ul>
-                        <li>Market Size: $XXX billion</li>
-                        <li>Growth Rate: X% annually</li>
-                        <li>Major Crops: Rice, Wheat, Cotton, etc.</li>
-                    </ul>
-                    <h3>Opportunities</h3>
-                    <p>With advancements in technology and increasing demand, there are numerous opportunities for growth in this sector.</p>
-                </div>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="kissan.html">
+                <img src="logo.png.jpg" alt="Kisan Connect Logo" style="width: 35px; height: auto;">
+                Kisan Connect
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Trends</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </div>
-    <script>
-        let report = {
-            title: "Agriculture Industry in India",
-            marketSize: "XXX billion",
-            growthRate: "X%",
-            majorCrops: ["Rice", "Wheat", "Cotton"]
-        };
+    </nav>
 
-        document.getElementById("report-title").innerText = report.title;
-        document.getElementById("market-size").innerText = report.marketSize;
-        document.getElementById("growth-rate").innerText = report.growthRate;
-        document.getElementById("major-crops").innerText = report.majorCrops.join(", ");
-        
-        let img = document.createElement("img");
-        img.src = "path/to/image.jpg";
-        document.body.appendChild(img);
-        
-        console.log(report);
+    <div class="container">
+        <div class="content-section">
+            <h1 class="mt-4 section-title">Agriculture Industry in India</h1>
+ <div class="horizontal-bar"></div>
+            <p>The Indian agriculture industry plays a critical role in the nation's economy, bridging the gap between farmers and buyers. By leveraging technology and streamlined supply chains, the market has created a more efficient ecosystem, ensuring better profits for farmers and quality produce for buyers.</p>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Importance of Agriculture</h2>
+            <p>Agriculture is the backbone of the Indian economy, contributing significantly to the GDP and providing employment to a large portion of the population. It not only ensures food security but also supports various industries such as textiles, food processing, and biofuels.</p>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Challenges Faced</h2>
+            <p>Despite its importance, the agriculture sector faces numerous challenges including climate change, water scarcity, and fluctuating market prices. Addressing these issues is crucial for sustainable growth and development in the sector.</p>
+        </div>
+
+        <div class="selection-section">
+            <button class="btn btn-success" onclick="showSection('fruits')">Fruits</button>
+            <button class="btn btn-success" onclick="showSection('vegetables')">Vegetables</button>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for a fruit or vegetable...">
+            <button onclick="searchTable()">Search</button>
+        </div>
+
+        <div id="fruits" class="table-container">
+            <h2>Fruits and Their Prices</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th >Fruit</th>
+                        <th>Price (₹)</th>
+                        <th>Season</th>
+                        <th>Nutritional Benefit</th>
+                    </tr>
+                </thead>
+                <tbody id="fruitTableBody">
+                    <tr>
+                        <td><img src="https://example.com/apple.jpg" alt="Apple">Apple</td>
+                        <td>150/kg</td>
+                        <td>Winter</td>
+                        <td>Rich in fiber, improves digestion</td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://example.com/banana.jpg" alt="Banana">Banana</td>
+                        <td>50/dozen</td>
+                        <td>Year-round</td>
+                        <td>High potassium, boosts energy</td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://example.com/orange.jpg" alt="Orange">Orange</td>
+                        <td>80/kg</td>
+                        <td>Winter</td>
+                        <td>High in vitamin C, boosts immunity</td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://example.com/grapes.jpg" alt="Grapes">Grapes</td>
+                        <td>120/kg</td>
+                        <td>Summer</td>
+                        <td>Rich in antioxidants, good for heart</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="vegetables" class="table-container" style="display:none;">
+            <h2>Vegetables and Their Prices</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Vegetable</th>
+                        <th>Price (₹)</th>
+                        <th>Season</th>
+                        <th>Nutritional Benefit</th>
+                    </tr>
+                </thead>
+                <tbody id="vegetableTableBody">
+                    <tr>
+                        <td><img src="https://example.com/tomato.jpg" alt="Tomato">Tomatoes</td>
+                        <td>40/kg</td>
+                        <td>Summer</td>
+                        <td>Rich in vitamin C, good for skin</td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://example.com/potato.jpg" alt="Potato">Potatoes</td>
+                        <td>30/kg</td>
+                        <td>Year-round</td>
+                        <td>High in carbohydrates, provides energy</td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://example.com/cabbage.jpg" alt="Cabbage">Cabbage</td>
+                        <td>25/kg</td>
+                        <td>Winter</td>
+                        <td>Rich in vitamins K and C, good for digestion</td>
+                    </tr>
+                    <tr>
+                        <td><img src="https://example.com/carrot.jpg" alt="Carrot">Carrots</td>
+                        <td>40/kg</td>
+                        <td>Winter</td>
+                        <td>High in beta-carotene, good for vision</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="graph-container">
+            <canvas id="trendGraph" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('trendGraph').getContext('2d');
+        let chart;
+
+        function renderChart(labels, data, label, color) {
+            if (chart) {
+                chart.destroy();
+            }
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: label,
+                            data: data,
+                            backgroundColor: color,
+                            borderColor: color,
+                            borderWidth: 2,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Months'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Prices in ₹'
+                            },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function showSection(sectionId) {
+            document.getElementById('fruits').style.display = 'none';
+            document.getElementById('vegetables').style.display = 'none';
+            document.getElementById(sectionId).style.display = 'block';
+
+            if (sectionId === 'fruits') {
+                renderChart(['January', 'February', 'March', 'April', 'May'], [150, 160, 155, 165, 170], 'Fruit Prices', 'rgba(0, 128, 0, 0.2)');
+            } else {
+                renderChart(['January', 'February', 'March', 'April', 'May'], [40, 42, 38, 45, 50], 'Vegetable Prices', 'rgba(255, 165, 0, 0.2)');
+            }
+        }
+
+        function searchTable() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const fruitRows = document.querySelectorAll('#fruitTableBody tr');
+            const vegetableRows = document.querySelectorAll('#vegetableTableBody tr');
+
+            fruitRows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(query) ? '' : 'none';
+            });
+
+            vegetableRows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(query) ? '' : 'none';
+            });
+        }
     </script>
 </body>
 </html>

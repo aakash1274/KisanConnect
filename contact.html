@@ -3,33 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Kisan Konnect | Contact Us</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Add your styles here */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #141414; /* Dark background for consistency */
+            color: #ffffff; /* White text for contrast */
+        }
+        .navbar {
+            background-color: #0d091e;
+        }
+        .navbar .nav-link {
+            color: white !important;
+            font-weight: 500;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            color: #38be14; /* Accent color for headings */
+        }
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent input fields */
+            border: none;
+            border-radius: 5px;
+            color: #ffffff; /* White text for input fields */
+        }
+        .form-control::placeholder {
+            color: #cdddd9; /* Light placeholder text */
+        }
+        .btn-primary {
+            background-color: #38be14; /* Custom button color */
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #28a745; /* Darker shade on hover */
+        }
+        footer {
+            background-color: #0d091e;
+            padding: 20px 0;
+            text-align: center;
+        }
+        footer p {
+            margin: 0;
+            color: #ffffff; /* White text for footer */
+        }
+        .alert {
+            display: none; /* Initially hidden */
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Contact Us</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse ```html
-" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="kissan.html">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About Us</a>
-                </li>
-            </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand text-white" href="kissan.html">
+                <img src="logo.png.jpg" alt="Kisan Connect Logo" style="width: 35px; height: auto;">
+                Kisan Connect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="farmerLogin.html">Farmer Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="buyerLogin.html">Buyer Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
+
     <main class="container mt-4">
         <h2>Contact Us</h2>
-        <form action="contact.html" method="post">
+        <form id="contactForm">
             <div class="form-group">
                 <label for="name"><b>Name</b></label>
                 <input type="text" id="name" class="form-control" name="name" placeholder="Your Name" required>
@@ -43,15 +92,25 @@
                 <textarea id="message" class="form-control" name="message" rows="4" placeholder="Your Message" required></textarea>
             </div>
             <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary" name="send" value="Send">Send Message</button>
+                <button type="submit" class="btn btn-primary">Send Message</button>
             </div>
         </form>
+        <div class="alert alert-success mt-3" id="successMessage">
+            Your message has been sent successfully! We will respond soon.
+        </div>
     </main>
-    <footer class="text-center mt-5">
+
+    <footer>
         <p>&copy; 2023 Agriculture Marketplace. All rights reserved.</p>
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('contactForm'). addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            document.getElementById('successMessage').style.display = 'block'; // Show success message
+            this.reset(); // Reset the form fields
+        });
+    </script>
 </body>
 </html>

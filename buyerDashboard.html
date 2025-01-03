@@ -3,32 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buyer Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <meta name="description" content="Kisan Connect: Advanced Marketplace for Farmers and Customers">
+    <meta name="keywords" content="Farming, Fresh Produce, Dairy, Agricultural Tools">
+    <meta name="author" content="Kisan Connect Team">
+    <title>Kisan Connect | Buyer Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #141414; /* Dark background for consistency */
+            color: #ffffff; /* White text for contrast */
+        }
+        .navbar {
+            background-color: #0d091e;
+        }
+        .navbar .nav-link {
+            color: white !important;
+            font-weight: 500;
+        }
+        header {
+            background: rgba(46, 137, 130, 0.8);
+            color: #ffffff;
+            text-align: center;
+            padding: 70px 0;
+        }
+        header h1 {
+            font-size: 4rem;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 1.5rem;
+        }
+        .dashboard {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .dashboard .dashboard-item {
+            background: linear-gradient(to bottom right, #38ef7d, #11998e);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            margin: 10px;
+            border: 2px solid #fff;
+        }
+        .dashboard .dashboard-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        footer {
+            background: #11998e;
+            color: white;
+            padding: 20px 0;
+        }
+        .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .testimonials {
+            padding: 40px 20px;
+            background-color: #2c2c2c; /* Dark background for better contrast */
+            margin: 20px 0;
+        }
+        .testimonial {
+            font-size: 1.2rem; /* Increased font size for testimonials */
+            margin: 20px 0; /* Spacing between testimonials */
+            color: #ffffff; /* White text for better visibility */
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Buyer Dashboard</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="buyerProfile.html">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="buyerOrders.html">Orders</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="buyerLogout.html">Logout</a>
-                </li>
-            </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand text-white" href="kissan.html">
+                <img src="logo.png.jpg" alt="Kisan Connect Logo" style="width: 35px; height: auto;">
+                Kisan Connect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="buyerOrders.html">My Orders</a></li>
+                    <li class="nav-item"><a class="nav-link" href="buyerProfile.html">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="buyerLogout.html">Logout</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
-    <main class="container mt-4">
-        <h2>Welcome to Your Dashboard</h2>
-        <p>Here you can manage your profile, view your orders, and more.</p>
-    </main>
-    <footer class="text-center mt-5">
-        <p>&copy; 2023 Agriculture Marketplace. All rights reserved.</p>
+
+    <!-- Header -->
+    <header>
+        <h1>Welcome to Kisan Connect</h1>
+        <p>Empowering Buyers with Quality Produce</p>
+    </header>
+
+<!-- Dashboard Section -->
+<section id="dashboard" class="dashboard">
+    <h2 class="text-center mb-5">Buyer Dashboard</h2>
+    <div class="row g-4 justify-content-center">
+        <div class="col-lg-4 col-md-6">
+            <div class="dashboard-item" onclick="redirectTo('organic-fruits.html')">
+                <i class="fas fa-apple-alt icon"></i>
+                Organic Fruits
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="dashboard-item" onclick="redirectTo('fresh-vegetables.html')">
+                <i class="fas fa-carrot icon"></i>
+                Fresh Vegetables
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="dashboard-item" onclick="redirectTo('dairy-products.html')">
+                <i class="fas fa-glass-whiskey icon"></i>
+                Dairy Products
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="dashboard-item" onclick="redirectTo('poultry-products.html')">
+                <i class="fas fa-egg icon"></i>
+                Poultry Products
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="dashboard-item" onclick="redirectTo('exotic-vegetables.html')">
+                <i class="fas fa-pepper-hot icon"></i>
+                Exotic Vegetables
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="text-center mb-5">Testimonials</h2>
+            <div class="testimonial">
+                <p>"Kisan Connect has transformed my farming experience. The quality of produce is exceptional!"</p>
+                <footer>— Rajesh Kumar, Buyer</footer>
+            </div>
+            <div class="testimonial">
+                <p>"I love the convenience of ordering fresh fruits and vegetables online. Highly recommend!"</p>
+                <footer>— Anita Sharma, Customer</footer>
+            </div>
+            <div class="testimonial">
+                <p>"The support from Kisan Connect has been invaluable. They truly care about farmers!"</p>
+                <footer>— Suresh Patel, Buyer</footer>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2025 Kisan Connect. All rights reserved.</p>
+            <p>Customer Support: 1800 267 0997 | Email: customercare@kisanconnect.in</p>
+        </div>
     </footer>
+
+    <!-- Scripts -->
+    <script>
+        function redirectTo(page) {
+            window.location.href = page;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

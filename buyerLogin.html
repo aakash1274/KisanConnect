@@ -3,33 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buyer Login</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Kisan Konnect | Buyer Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Add your styles here */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #141414; /* Dark background for consistency */
+            color: #ffffff; /* White text for contrast */
+        }
+        .navbar {
+            background-color: #0d091e;
+        }
+        .navbar .nav-link {
+            color: white !important;
+            font-weight: 500;
+        }
+        .my-form {
+            padding: 60px 0;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1); /* Slightly transparent card */
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .card-header {
+            background: rgba(46, 137, 130, 0.8);
+            color: #ffffff;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #38be14; /* Custom button color */
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #28a745; /* Darker shade on hover */
+        }
+        #forgotPassword, #account {
+            color: #38be14; /* Accent color for links */
+        }
+        #forgotPassword a, #account a {
+            text-decoration: none;
+        }
+        #forgotPassword a:hover, #account a:hover {
+            text-decoration: underline;
+        }
     </style>
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // Prevent the default form submission
+            // Here you can add your login logic (e.g., validation, API call)
+            // For now, we will just redirect to the buyer dashboard
+            window.location.href = 'buyerDashboard.html';
+        }
+    </script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="kissan.html">Agriculture Marketplace</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="buyerLogin.html">Buyer Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="farmerLogin.html">Farmer Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-            </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand text-white" href="kissan.html">
+                <img src="logo.png.jpg" alt="Kisan Connect Logo" style="width: 35px; height: auto;">
+                Kisan Connect
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="farmerLogin.html">Farmer Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
@@ -42,10 +98,10 @@
                             <h4>Buyer Login</h4>
                         </div>
                         <div class="card-body">
-                            <form action="buyerDashboard.html" method="post">
+                            <form onsubmit="handleLogin(event)">
                                 <div class="form-group">
                                     <label for="email"><b>Email</b></label>
-                                    <input type="email" id="email" class="form-control" name="email" placeholder="Email" required>
+                                    <input type="email" id="email" class="form-control" name=" email" placeholder="Email" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="password"><b>Password</b></label>
@@ -71,8 +127,6 @@
         <p>&copy; 2023 Agriculture Marketplace. All rights reserved.</p>
     </footer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

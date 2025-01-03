@@ -13,10 +13,8 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-image: url('https://example.com/background.jpg'); /* Replace with your background image URL */
-            background-size: cover;
-            background-attachment: fixed;
-            color: #333;
+            background-color: #141414; /* Dark background for consistency */
+            color: #ffffff; /* White text for contrast */
         }
         header {
             background: rgba(46, 137, 130, 0.8);
@@ -46,9 +44,20 @@
         }
         .content {
             padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
             border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+            margin: 20px auto;
+        }
+        h2, h3 {
+            color: #38be14; /* Accent color for headings */
+        }
+        ul {
+            list-style-type: none; /* Remove default list styling */
+            padding-left: 0; /* Remove padding */
+        }
+        li {
+            margin: 10px 0; /* Spacing between list items */
         }
     </style>
 </head>
@@ -56,16 +65,17 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand text-white" href="#">Kisan Konnect</a>
+            <a class="navbar-brand text-white" href="kissan.html">
+                <img src="logo.png.jpg" alt="Kisan Connect Logo" style="width: 35px; height: auto;">
+                Kisan Connect
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="kissan.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="farmerLogin.html">Farmer Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="buyerLogin.html">Buyer Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
             </div>
@@ -86,7 +96,7 @@
         <h3>Our Mission</h3>
         <p>To empower farmers and provide buyers with access to quality agricultural products.</p>
         
-        <h3>Our Vision</h3>
+ <h3>Our Vision</h3>
         <p>To be the leading online marketplace for agricultural products, fostering sustainable practices and supporting local farmers.</p>
         
         <h3>Our Values</h3>
