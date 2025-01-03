@@ -4,54 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kisan Connect - Equipment Rental</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* General Styles */
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f9;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            background-color: #141414; /* Dark background */
+            color: #ffffff; /* White text for contrast */
         }
 
-        header {
-            background: linear-gradient(90deg, #4CAF50, #3e8e41);
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        .navbar {
+            background-color: #0d091e; /* Dark navbar */
         }
 
-        h1 {
-            margin: 0;
-            font-size: 28px;
+        .navbar a {
+            color: #ffd700; /* Gold color for links */
+            font-weight: bold;
+            margin-right: 20px; /* Increased spacing */
         }
 
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            gap: 20px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #d1e0e0;
+        .navbar a:hover {
+            color: white; /* Change color on hover */
         }
 
         #intro {
             text-align: center;
             padding: 40px 20px;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             margin: 20px auto;
@@ -93,10 +72,10 @@
         }
 
         .equipment-item {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            padding: 20px;
-            width: 320px;
+            padding: 15px; /* Reduced padding */
+            width: 250px; /* Reduced width */
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
@@ -120,9 +99,8 @@
             border-radius: 5px;
             padding: 10px 15px;
             cursor: pointer;
-            transition: background-color ```html
-            0.3s, transform 0.3s;
-            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 16px; /* Reduced font size */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -135,15 +113,6 @@
             transform: translateY(-2px);
         }
 
-        #rental-terms, #reviews, #booking {
-            background-color: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            margin: 40px auto;
-            max-width: 80%;
-        }
-
         footer {
             text-align: center;
             background-color: #4CAF50;
@@ -154,149 +123,133 @@
             width: 100%;
         }
 
-        ul {
-            line-height: 1.6;
-        }
-
-        /* New styles for enhanced UI */
-        .equipment-item h3 {
-            color: #4CAF50;
-        }
-
-        .equipment-item p {
-            margin: 10px 0;
-        }
-
-        #search button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        #search button:hover {
-            background-color: #45a049;
-            transform: translateY(-2px);
-        }
-
-        /* Adding a gradient background to the intro section */
-        #intro {
-            background: linear-gradient(135deg, #f4f4f9, #e0e0e0);
+        .section-title {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #38be14; /* Green color for section titles */
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Kisan Connect</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/equipment">Equipment Rentals</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/about">About</a></li>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="farmerDashboard.html">
+            <img src="logo.png.jpg" alt="Kisan Connect Logo" style="width: 35px; height: auto;">
+            Kisan Connect
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
             </ul>
-        </nav>
-    </header>
+        </div>
+    </div>
+</nav>
 
-    <section id="intro">
-        <h1>Welcome to Our Equipment Rental Platform</h1>
-        <p>Rent farming machinery at affordable prices. Access the best equipment when you need it, without the upfront cost!</p>
-    </section>
+<!-- Intro Section -->
+<section id="intro">
+    <h1>Welcome to Our Equipment Rental Platform</h1>
+    <p>Rent farming machinery at affordable prices. Access the best equipment when you need it, without the upfront cost!</p>
+</section>
 
-    <section id="search">
-        <h2>Find the Perfect Equipment</h2>
-        <form action="/search" method="GET">
-            <label for="category">Category:</label>
-            <select name="category" id="category">
-                <option value="tractors">Tractors</option>
-                <option value="harvesters">Harvesters</option>
-                <option value="sprayers">Sprayers</option>
-                <option value="irrigation">Irrigation Systems</option>
-                <option value="seeders">Seeders</option>
-            </select>
+<!-- Search Section -->
+<section id="search">
+    <h2>Find the Perfect Equipment</h2>
+    <form action="/search" method="GET">
+        <label for="category">Category:</label>
+        <select name="category" id="category">
+            <option value="tractors">Tractors</option>
+            <option value="harvesters">Harvesters</option>
+            <option value="sprayers">Sprayers</option>
+            <option value="irrigation">Irrigation Systems</option>
+            <option value="seeders">Seeders</option>
+        </select>
 
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" placeholder="Enter your location">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" placeholder="Enter your location">
 
-            <label for="duration">Rental Duration:</label>
-            <select name="duration" id="duration">
-                <option value="daily">Daily</option>
-                <option value="weekly">Weekly</option>
-                <option value="seasonal">Seasonal</option>
-            </select>
+        <label for="duration">Rental Duration:</label>
+        <select name="duration" id="duration">
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="seasonal">Seasonal</option>
+        </select>
 
-            <button type="submit">Search</button>
-        </form>
-    </section>
+        <button type="submit">Search</button>
+    </form>
+</section>
 
-    <section id="equipment-list">
-        <h2>Available Equipment</h2>
+<!-- Equipment List Section -->
+<section id="equipment-list" class="container">
+    <h2 class="section-title text-center">Available Equipment</h2>
+    <div class="row justify-content-center">
 
-        <div class="equipment-item">
-            <img src="tractor.jpg" alt="Tractor">
-            <h3>Tractor</h3>
-            <p>Perfect for plowing, tilling, and transporting materials.</p>
-            <p><strong>Price:</strong> $150/day</p>
-            <p><strong>Available Locations:</strong> New York, California, Texas</p>
-            <button onclick="bookEquipment('Tractor')">Book Now</button>
+        <div class="col-md-3">
+            <div class="equipment-item">
+                <img src="tractor.jpg" alt="Tractor">
+                <h3>Tractor</h3>
+                <p>Perfect for plowing, tilling, and transporting materials.</p>
+                <p><strong>Price:</strong> ₹11,000/day</p>
+                <p><strong>Available Locations:</strong> Maharashtra, Punjab, Haryana</p>
+                <button onclick="bookEquipment('Tractor')">Book Now</button>
+            </div>
         </div>
 
-        <div class="equipment-item">
-            <img src="harvester.jpg" alt="Harvester">
-            <h3>Harvester</h3>
-            <p>Efficiently harvest your crops with our state-of-the-art machines.</p>
-            <p><strong>Price:</strong> $500/day</p>
-            <p><strong>Available Locations:</strong> Florida, Nebraska, Kansas</p>
-            <button onclick="bookEquipment('Harvester')">Book Now</button>
+        <div class="col-md-3">
+            <div class="equipment-item">
+                <img src="harvester.jpg" alt="Harvester">
+                <h3>Harvester</h3>
+                <p>Efficiently harvest your crops with our state-of-the-art machines.</p>
+                <p><strong>Price:</strong> ₹37,500/day</p>
+                <p><strong>Available Locations:</strong> Uttar Pradesh, Rajasthan, Gujarat</p>
+                <button onclick="bookEquipment('Harvester')">Book Now</button>
+            </div>
         </div>
 
-        <div class="equipment-item">
-            <img src="sprayer.jpg" alt="Sprayer">
-            <h3>Sprayer</h3>
-            <p>Ideal for applying fertilizers and pesticides evenly across your fields.</p>
-            <p><strong>Price:</strong> $100/day</p>
-            <p><strong>Available Locations:</strong> Illinois, Ohio, Michigan</p>
-            <button onclick="bookEquipment('Sprayer')">Book Now</button>
+        <div class="col-md-3">
+            <div class="equipment-item">
+                <img src="sprayer.jpg" alt="Sprayer">
+                <h3>Sprayer</h3>
+                <p>Ideal for applying fertilizers and pesticides evenly across your fields.</p>
+                <p><strong>Price:</strong> ₹8,000/day</p>
+                <p><strong>Available Locations:</strong> Karnataka, Tamil Nadu, Andhra Pradesh</p>
+                <button onclick="bookEquipment('Sprayer')">Book Now</button>
+            </div>
         </div>
 
-        <div class="equipment-item">
-            <img src="irrigation.jpg" alt="Irrigation System">
-            <h3>Irrigation System</h3>
-            <p>Efficiently water your crops with our advanced irrigation solutions.</p>
-            <p><strong>Price:</strong> $200/day</p>
-            <p><strong>Available Locations:</strong> Arizona, Nevada, Texas</p>
-            <button onclick="bookEquipment('Irrigation System')">Book Now</button>
+        <div class="col-md-3">
+            <div class="equipment-item">
+                <img src="irrigation.jpg" alt="Irrigation System">
+                <h3>Irrigation System</h3>
+                <p>Efficiently water your crops with our advanced irrigation solutions.</p>
+                <p><strong>Price:</strong> ₹15,000/day</p>
+                <p><strong>Available Locations:</strong> Kerala, West Bengal, Assam</p>
+                <button onclick="bookEquipment('Irrigation System')">Book Now</button>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="rental-terms">
-        <h2>Rental Terms & Conditions</h2>
-        <ul>
-            <li><strong>Rental Duration:</strong> Choose from daily, weekly, or seasonal rental options.</li>
-            <li><strong>Pricing:</strong> Prices are based on the selected rental period. Additional delivery charges may apply.</li>
-            <li><strong>Booking:</strong> Equipment can be booked online via the platform. A refundable deposit may be required.</li>
-            <li><strong>Insurance:</strong> Optional insurance can be purchased to cover damages during the rental period.</li>
-            <li><strong>Maintenance:</strong> The rental company ensures all equipment is in top working condition. However, if issues arise, customer support is available 24/7.</li>
-        </ul>
-    </section>
+<!-- Footer -->
+<footer>
+    <p>&copy; 2025 Kisan Connect. All rights reserved.</p>
+    <p>
+        <a href="/privacy-policy" style="color: white; text-decoration: underline;">Privacy Policy</a> |
+        <a href="/terms" style="color: white; text-decoration: underline;">Terms of Service</a>
+    </p>
+</footer>
 
-    <footer>
-        <p>&copy; 2025 Kisan Connect. All rights reserved.</p>
-        <p>
-            <a href="/privacy-policy" style="color: white; text-decoration: underline;">Privacy Policy</a> |
-            <a href="/terms" style="color: white; text-decoration: underline;">Terms of Service</a>
-        </p>
-    </footer>
-
-    <script>
-        // Function to handle equipment booking
-        function bookEquipment(equipmentName) {
-            alert(You have chosen to book the ${equipmentName}. Please proceed to the booking page.);
-            // Redirect to booking page or handle further logic here
-        }
-    </script>
+<script>
+    // Function to handle equipment booking
+    function bookEquipment(equipmentName) {
+        alert(`You have chosen to book the ${equipmentName}. Please proceed to the booking page.`);
+        // Redirect to booking page or handle further logic here
+    }
+</script>
 </body>
 </html>
