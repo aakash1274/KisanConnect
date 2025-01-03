@@ -6,7 +6,7 @@
     <meta name="description" content="Kisan Konnect: Advanced Marketplace for Farmers and Customers">
     <meta name="keywords" content="Farming, Fresh Produce, Dairy, Agricultural Tools">
     <meta name="author" content="Kisan Konnect Team">
-    <title>Kisan Konnect | Register/Login</title>
+    <title>Kisan Konnect | Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -20,15 +20,15 @@
             background: rgba(46, 137, 130, 0.8);
             color: #ffffff;
             text-align: center;
-            padding: 70px 0;
+            padding: 10px 0; /* Reduced padding */
             position: relative;
         }
         header h1 {
-            font-size: 4rem;
+            font-size: 2rem; /* Reduced font size */
             font-weight: 700;
         }
         header p {
-            font-size: 1.5rem;
+            font-size: 1.2rem; /* Reduced font size */
         }
         .navbar {
             background-color: #0d091e;
@@ -37,43 +37,37 @@
             color: white !important;
             font-weight: 500;
         }
-        .register-login {
-            background: #ff4757;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .option-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 50px;
-            flex-wrap: wrap;
-        }
-        .option-box {
+        .login-container {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 30px;
-            margin: 20px;
+            padding: 20px; /* Reduced padding */
+            margin: 50px auto;
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            width: 300px; /* Fixed width for uniformity */
+            max-width: 400px;
         }
-        .option-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-        }
-        .option-box h2 {
-            margin-bottom: 15px;
+        .login-container h2 {
+            margin-bottom: 20px;
         }
         footer {
             background: #11998e;
             color: white;
             padding: 20px 0;
             text-align: center;
+        }
+        .register-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .forgot-password {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .btn-success {
+            background-color: #28a745; /* Custom green color */
+            border: none;
+        }
+        .btn-success:hover {
+            background-color: #218838; /* Darker green on hover */
         }
     </style>
 </head>
@@ -100,25 +94,39 @@
 
 <!-- Hero Section -->
 <header>
-    <h1>Register or Login</h1>
-    <p>Choose your role to proceed</p>
+    <h1>Login</h1>
+    <p>Please enter your credentials</p>
 </header>
 
-<!-- Options Section -->
-<section class="option-container">
-    <div class="option-box" onclick="window.location.href='farmerLogin.html'">
-        <h2>Farmer</h2>
-        <p>Login or Register as a Farmer</p>
-        <button class="btn btn-success">Farmer Login/Register</button>
+<!-- Login Form Section -->
+<div class="login-container">
+    <h2 class="text-center">Welcome Back!</h2>
+    <form id="loginForm">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-control" required />
+        </div>
+        <div class="mb-3">
+ <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label for="role" class="form-label">I am a</label>
+            <select id="role" class="form-select">
+                <option value="farmer">Farmer</option>
+                <option value="buyer">Buyer</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Login</button>
+    </form>
+    <div class="forgot-password">
+        <p><a href="#" id="forgotPassword" class="text-success">Forgot Password?</a></p>
     </div>
-    <div class="option-box" onclick="window.location.href='buyerLogin.html'">
-        <h2>Buyer</h2>
-        <p>Login or Register as a Buyer</p>
-        <button class="btn btn-success">Buyer Login/Register</button>
+    <div class="register-link">
+        <p>Don't have an account? <a href="farmerRegistration.html" class="text-success">Register as a Farmer</a> | <a href="buyerRegistration.html" class="text-success">Register as a Buyer</a></p>
     </div>
-</section>
+</div>
 
-<!-- Footer -->
 <footer>
     <p>&copy; 2025 Kisan Konnect. All rights reserved.</p>
     <p>Customer Support: 1800 267 0997 | Email: customercare@kisankonnect.in</p>
@@ -126,5 +134,24 @@
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const role = document.getElementById('role').value;
+
+        // Navigate based on role
+        const dashboard = role === 'farmer' ? 'farmerDashboard.html' : 'buyerDashboard.html';
+        window.location.href = dashboard; // Redirect to the appropriate dashboard
+    });
+
+    document.getElementById('forgotPassword').addEventListener('click', function(e) {
+        e.preventDefault();
+        const role = document.getElementById('role').value;
+        const recoveryPage = role === 'farmer' ? 'farmerForgotPassword.html' : 'buyerForgotPassword.html';
+        window.location.href = recoveryPage; // Redirect to the respective forgot password page
+    });
+</script>
 </body>
 </html>
