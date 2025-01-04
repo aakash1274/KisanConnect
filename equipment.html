@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment and Tools FAQ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('Equipmentt.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .search-bar {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-bar input {
+            width: 90%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .faq-section {
+            margin-top: 20px;
+        }
+        .faq-item {
+            margin-bottom: 15px;
+        }
+        .faq-question {
+            font-weight: bold;
+            background: #27ae60;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .faq-question:hover {
+            background-color: #219150;
+        }
+        .faq-answer {
+            display: none;
+            padding: 15px;
+            margin-top: 5px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background: #f8f9fa;
+            color: #333;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const questions = document.querySelectorAll('.faq-question');
+            questions.forEach((question, index) => {
+                question.addEventListener('click', () => {
+                    const answer = document.querySelector(`#answer-${index + 1}`);
+                    const isVisible = answer.style.display === 'block';
+                    answer.style.display = isVisible ? 'none' : 'block';
+                });
+            });
+        });
+
+        function filterFAQs(query) {
+            query = query.toLowerCase();
+            const items = document.querySelectorAll('.faq-item');
+            items.forEach(item => {
+                const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                item.style.display = question.includes(query) || answer.includes(query) ? '' : 'none';
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Equipment FAQ's</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Search FAQs..." onkeyup="filterFAQs(this.value)">
+        </div>
+
+        <div class="faq-section">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(1)">1. What is the best tractor for small-scale farming?</div>
+                <div id="answer-1" class="faq-answer">Compact tractors like the John Deere 1025R or Kubota BX Series are popular choices. They combine reliability with flexible attachments and are designed for small acreage or hobby farms.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(2)">2. How do I maintain my agricultural tools?</div>
+                <div id="answer-2" class="faq-answer">Keep your tools clean after each use, oil any moving parts, and store them in a cool, dry space. Regular maintenance ensures longevity and optimal performance.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(3)">3. What is the lifespan of a plowing blade?</div>
+                <div id="answer-3" class="faq-answer">Plowing blades last between 3 to 5 years under regular use. Their durability depends on soil type, operational care, and timely inspections for wear and tear.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(4)">4. Can I use the same equipment for different crops?</div>
+                <div id="answer-4" class="faq-answer">Yes, many machines are designed for versatility. However, adjustments or recalibrations may be necessary to meet the requirements of specific crops.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(5)">5. What safety precautions should I take when using power tools?</div>
+                <div id="answer-5" class="faq-answer">Always wear protective gear such as gloves, goggles, and boots. Avoid distractions, follow the manufacturer's guide, and inspect the tools before every use.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(6)">6. How often should I service my tractor?</div>
+                <div id="answer-6" class="faq-answer">Tractors need servicing every 200-250 operational hours or once annually. Routine checks include oil changes, belt inspections, and filter replacements.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(7)">7. What is the best way to sharpen a sickle or scythe?</div>
+                <div id="answer-7" class="faq-answer">Use a fine-grit sharpening stone and maintain consistent blade angles. Regular sharpening after each use ensures precise and efficient cuts in the field.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(8)">8. Are electric tools better than manual ones for gardening?</div>
+                <div id="answer-8" class="faq-answer">Electric tools save time and reduce effort in larger tasks, but manual tools often offer better control. Choose based on the specific demands of your gardening project.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

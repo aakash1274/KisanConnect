@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organic Dairy Marketplace</title>
+    <style>
+        /* Same styling as before */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #F0FFF0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        .header h1 {
+            color: #2E7D32;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .search-input {
+            width: 80%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+        }
+
+        .search-icon {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-left: -40px;
+            z-index: 1;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-name {
+            font-size: 1.5rem;
+            color: #2E7D32;
+            margin-bottom: 10px;
+        }
+
+        .product-details {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .farmer-count {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .detailed-view {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .back-button {
+            background-color: #D3D3D3;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-detail-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .farmers-list {
+            margin-top: 20px;
+        }
+
+        .farmer-card {
+            background: #FFFFFF;
+            border: 1px solid #DDD;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .farmer-card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .farmer-name {
+            font-weight: bold;
+            color: #2E7D32;
+        }
+
+        .farmer-details {
+            margin-top: 10px;
+            color: #555;
+        }
+
+        .rating {
+            color: #FFD700;
+        }
+
+        .chat-option {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 10px;
+        }
+
+        .chat-text {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Organic Dairy Marketplace</h1>
+            <p>Connect directly with farmers for fresh, organic dairy products</p>
+        </header>
+
+        <div class="search-bar">
+            <input type="text" class="search-input" id="searchBar" placeholder="Search for dairy products...">
+            <span class="search-icon" onclick="searchProducts()">🔍</span>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+    </div>
+
+    <div class="detailed-view" id="detailedView">
+        <button class="back-button" onclick="hideDetailedView()">← Back to Selection</button>
+        <div class="detail-content" id="detailContent"></div>
+    </div>
+
+    <script>
+        const productsData = [
+            {
+                id: 1,
+                name: 'Milk',
+                variety: 'Full Cream',
+                season: 'All Year',
+                image: 'https://via.placeholder.com/400x250?text=Milk',
+                description: 'Rich, full cream milk, perfect for tea, coffee, and drinking.',
+                farmers: [
+                    {
+                        name: 'Amit Sharma',
+                        location: 'Nagpur, Maharashtra',
+                        experience: '15 years',
+                        capacity: '1000 liters/week',
+                        certification: 'Organic Certified',
+                        rating: 4.7
+                    }
+                ]
+            },
+            {
+                id: 2,
+                name: 'Cheese',
+                variety: 'Cheddar',
+                season: 'All Year',
+                image: 'https://via.placeholder.com/400x250?text=Cheese',
+                description: 'Matured cheddar cheese with a tangy flavor.',
+                farmers: [
+                    {
+                        name: 'Suresh Mehta',
+                        location: 'Ahmedabad, Gujarat',
+                        experience: '10 years',
+                        capacity: '500 kg/week',
+                        certification: 'FSSAI Approved',
+                        rating: 4.8
+                    }
+                ]
+            }
+        ];
+
+        function createProductCards() {
+            const productGrid = document.getElementById('productGrid');
+            productGrid.innerHTML = productsData.map(product => `
+                <div class="product-card" onclick="showDetailedView(${product.id})">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-details">Variety: ${product.variety}</p>
+                        <p class="product-details">Season: ${product.season}</p>
+                        <p class="farmer-count">${product.farmers.length} Farmers Available</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showDetailedView(productId) {
+            const product = productsData.find(p => p.id === productId);
+            const detailedView = document.getElementById('detailedView');
+            const detailContent = document.getElementById('detailContent');
+
+            detailContent.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-detail-image">
+                <h2 class="product-name">${product.name}</h2>
+                <p class="product-details"><strong>Variety:</strong> ${product.variety}</p>
+                <p class="product-details"><strong>Season:</strong> ${product.season}</p>
+                <p class="product-details"><strong>Description:</strong> ${product.description}</p>
+                <h3>Available Farmers</h3>
+                <div class="farmers-list">
+                    ${product.farmers.map(farmer => `
+                        <div class="farmer-card">
+                            <div class="farmer-info">
+                                <p class="farmer-name">${farmer.name}</p>
+                                <p class="farmer-details"><strong>Location:</strong> ${farmer.location}</p>
+                                <p class="farmer-details"><strong>Experience:</strong> ${farmer.experience}</p>
+                                <p class="farmer-details"><strong>Capacity:</strong> ${farmer.capacity}</p>
+                                <p class="farmer-details"><strong>Certification:</strong> ${farmer.certification}</p>
+                                <p class="farmer-details"><strong>Rating:</strong> <span class="rating">${'⭐'.repeat(Math.round(farmer.rating))}</span> ${farmer.rating}</p>
+                            </div>
+                            <div class="chat-option">
+                                <span class="chat-text">Chat</span>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            detailedView.style.display = 'block';
+        }
+
+        function hideDetailedView() {
+            document.getElementById('detailedView').style.display = 'none';
+        }
+
+        function searchProducts() {
+            const query = document.getElementById('searchBar').value.toLowerCase();
+            const filteredProducts = productsData.filter(product => product.name.toLowerCase().includes(query));
+            productsData.length = 0;
+            productsData.push(...filteredProducts);
+            createProductCards();
+        }
+
+        createProductCards();
+    </script>
+</body>
+</html>

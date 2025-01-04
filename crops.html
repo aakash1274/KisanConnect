@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer and Farmer FAQs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('Cropp.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .faq-section {
+            margin-top: 20px;
+        }
+        .faq-category {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .buyer-category {
+            background: black;
+            color: white;
+        }
+        .farmer-category {
+            background: black;
+            color: white;
+        }
+        .faq-item {
+            margin-bottom: 15px;
+        }
+        .buyer-question {
+            font-weight: bold;
+            background: green;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .buyer-question:hover {
+            background-color: green;
+        }
+        .farmer-question {
+            font-weight: bold;
+            background: green;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .farmer-question:hover {
+            background-color: green;
+        }
+        .faq-answer {
+            display: none;
+            padding: 15px;
+            margin-top: 5px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background: #f8f9fa;
+            color: #333;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const questions = document.querySelectorAll('.faq-question');
+            questions.forEach((question, index) => {
+                question.addEventListener('click', () => {
+                    const answer = document.querySelector(`#answer-${index + 1}`);
+                    const isVisible = answer.style.display === 'block';
+                    answer.style.display = isVisible ? 'none' : 'block';
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Buyer and Farmer FAQs</h1>
+
+        <div class="faq-section">
+            <div class="faq-category buyer-category">FAQs for Buyers</div>
+            <div class="faq-item">
+                <div class="faq-question buyer-question" onclick="toggleAnswer(1)">1. What crops are available on the website?</div>
+                <div id="answer-1" class="faq-answer">We offer a variety of crops, including fruits (mangoes, apples), vegetables (potatoes, tomatoes), dairy products, poultry products, and exotic vegetables like broccoli and lettuce.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question buyer-question" onclick="toggleAnswer(2)">2. How do I place an order?</div>
+                <div id="answer-2" class="faq-answer">To place an order, browse through our product catalog, add items to your cart, and proceed to checkout with your shipping and payment details.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question buyer-question" onclick="toggleAnswer(3)">3. Are products on the website organic?</div>
+                <div id="answer-3" class="faq-answer">We provide both organic and non-organic options. Organic products are clearly labeled, and you can filter for them in the product catalog.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question buyer-question" onclick="toggleAnswer(4)">4. What if I receive damaged or low-quality produce?</div>
+                <div id="answer-4" class="faq-answer">If you receive damaged or unsatisfactory produce, please contact customer support within 24 hours of delivery. We offer refunds or replacements.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question buyer-question" onclick="toggleAnswer(5)">5. Do you deliver nationwide?</div>
+                <div id="answer-5" class="faq-answer">Yes, we deliver across India. Delivery times vary based on location and product type. Estimated delivery dates are provided at checkout.</div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <div class="faq-category farmer-category">FAQs for Farmers</div>
+            <div class="faq-item">
+                <div class="faq-question farmer-question" onclick="toggleAnswer(6)">1. How do I list my crops on the website?</div>
+                <div id="answer-6" class="faq-answer">To list your crops, create a farmer account, upload details about your produce, including type, quantity, and price, and wait for approval from our team.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question farmer-question" onclick="toggleAnswer(7)">2. Are there any fees for selling on this platform?</div>
+                <div id="answer-7" class="faq-answer">We charge a small commission on each sale. There are no upfront fees for listing your products, and detailed terms are shared during onboarding.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question farmer-question" onclick="toggleAnswer(8)">3. How will I get paid for my sales?</div>
+                <div id="answer-8" class="faq-answer">Payments are made directly to your registered bank account within 7 days of successful delivery and customer satisfaction.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question farmer-question" onclick="toggleAnswer(9)">4. What kind of crops are in high demand?</div>
+                <div id="answer-9" class="faq-answer">Fruits like mangoes and apples, vegetables like tomatoes and potatoes, and exotic vegetables like lettuce are often in high demand across markets.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question farmer-question" onclick="toggleAnswer(10)">5. Can I connect with buyers directly?</div>
+                <div id="answer-10" class="faq-answer">Yes, our platform facilitates communication between buyers and farmers through a secure messaging feature for any queries or custom orders.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
