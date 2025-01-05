@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Organic Fruit Marketplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: #F0FFF0;
+            background-color: #141414;
+            color: #ffffff;
         }
 
         .container {
@@ -29,17 +31,16 @@
         }
 
         .header h1 {
-            color: #2E7D32;
+            color: #38ef7d;
             font-size: 2.5rem;
             margin-bottom: 10px;
         }
 
         .header p {
-            color: #333;
+            color: #ccc;
             font-size: 1.2rem;
         }
 
-        /* Search Bar Styles */
         .search-bar {
             display: flex;
             justify-content: center;
@@ -48,46 +49,49 @@
 
         .search-input {
             width: 80%;
-            padding: 10px;
+            padding: 15px;
             font-size: 1rem;
-            border: 1px solid #ccc;
+            border: 1px solid #333;
             border-radius: 20px;
+            outline: none;
+            background-color: #1a1a1a;
+            color: #ffffff;
         }
 
         .search-icon {
-            padding: 10px;
-            background-color: #4CAF50;
+            padding: 15px;
+            background-color: #38ef7d;
             color: white;
             border-radius: 50%;
             cursor: pointer;
-            margin-left: -40px;
+            margin-left: -50px;
             z-index: 1;
         }
 
         .fruit-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             padding: 20px;
         }
 
         .fruit-card {
-            background: white;
+            background: #1a1a1a;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
         }
 
         .fruit-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
         .fruit-image {
             width: 100%;
-            height: 250px;
+            height: 200px;
             object-fit: cover;
         }
 
@@ -97,12 +101,12 @@
 
         .fruit-name {
             font-size: 1.5rem;
-            color: #2E7D32;
+            color: #38ef7d;
             margin-bottom: 10px;
         }
 
         .fruit-details {
-            color: #666;
+            color: #ccc;
             margin-bottom: 5px;
         }
 
@@ -119,7 +123,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(20, 20, 20, 0.95);
             overflow-y: auto;
             z-index: 1000;
         }
@@ -141,91 +145,107 @@
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background: white;
+            background: #1a1a1a;
             border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0 ,0.3);
         }
 
         .fruit-detail-image {
             width: 100%;
-            height: 400px;
+            height: 300px;
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 20px;
         }
 
-        .farmers-list {
-            margin-top: 20px;
-        }
-
         .farmer-card {
-            background: #FFFFFF;
-            border: 1px solid #DDD;
+            background: #1a1a1a;
+            border: 1px solid #333;
             border-radius: 10px;
-            padding: 15px;
+            padding: 20px;
             margin-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .farmer-card:hover {
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        .farmer-info {
+            flex: 1;
         }
 
         .farmer-name {
-            font-weight: bold;
-            color: #2E7D32;
+            font-weight: 600;
+            color: #38ef7d;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
         }
 
-        .farmer-details {
-            margin-top: 10px;
-            color: #555;
+        .button-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .chat-button {
+            background-color: #38ef7d;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            border: none;
+            font-size: 16px;
+        }
+
+        .deal-button {
+            background-color: #EF4444;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            border: none;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            width: 150px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .deal-button:hover {
+            transform: scale(1.05);
+            background-color: #DC2626;
         }
 
         .rating {
             color: #FFD700;
+            display: inline-block;
+            margin-left: 5px;
         }
 
-        /* Chat Option */
-        .chat-option {
-            display: flex;
-            justify-content: flex-start;
-            margin-top: 10px;
-        }
+        @media (max-width: 768px) {
+            .fruit-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
 
-        .chat-text {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-left: 10px;
-        }
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+            }
 
-        /* Improved alignment and spacing */
-        .farmer-card .chat-option {
-            align-items: center;
-            margin-top: 10px;
-        }
+            .farmer-card {
+                flex-direction: column;
+                text-align: center;
+            }
 
-        .detail-content .farmer-card {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-
-        .farmer-card .farmer-info {
-            flex: 1;
-            padding: 10px;
-        }
-
-        .farmer-card .chat-option {
-            margin-top: 0;
-        }
-
-        .farmer-card .chat-text {
-            padding: 10px 15px;
+            .farmer-info {
+                margin-bottom: 15px;
+            }
         }
     </style>
 </head>
@@ -236,47 +256,39 @@
             <p>Connect directly with farmers for fresh, organic fruits</p>
         </header>
 
-        <!-- Search Bar -->
         <div class="search-bar">
             <input type="text" class="search-input" id="searchBar" placeholder="Search for fruits...">
             <span class="search-icon" onclick="searchFruits()">🔍</span>
         </div>
 
-        <!-- Fruit Cards Grid -->
         <div class="fruit-grid" id="fruitGrid"></div>
     </div>
 
-    <!-- Detailed View -->
     <div class="detailed-view" id="detailedView">
         <button class="back-button" onclick="hideDetailedView()">← Back to Selection</button>
         <div class="detail-content" id="detailContent"></div>
     </div>
 
     <script>
-        // Fruits Data
         const fruitsData = [
             {
                 id: 1,
                 name: 'Mangoes',
                 variety: 'Alphonso',
                 season: 'March-June',
-                image: 'https://via.placeholder.com/400x250?text=Mangoes',
+                image: '/api/placeholder/400/250',
                 description: 'Premium Alphonso mangoes known for their rich, sweet taste and vibrant golden color.',
                 farmers: [
                     {
                         name: 'Rajesh Kumar',
                         location: 'Ratnagiri, Maharashtra',
-                        experience: '20 years',
-                        capacity: '500 kg/week',
-                        certification: 'Organic Certified',
+                        quantity: '500 kg available',
                         rating: 4.8
                     },
                     {
                         name: 'Suresh Patel',
                         location: 'Valsad, Gujarat',
-                        experience: '25 years',
-                        capacity: '800 kg/week',
-                        certification: 'Global GAP',
+                        quantity: '800 kg available',
                         rating: 4.6
                     }
                 ]
@@ -286,22 +298,19 @@
                 name: 'Apples',
                 variety: 'Kinnaur',
                 season: 'September-December',
-                image: 'https://via.placeholder.com/400x250?text=Apples',
+                image: '/api/placeholder/400/250',
                 description: 'Sweet and crispy apples from the hills of Himachal Pradesh.',
                 farmers: [
                     {
                         name: 'Vikram Singh',
-                        location: 'Kinnaur, Himachal Pradesh',
-                        experience: '22 years',
-                        capacity: '1000 kg/week',
-                        certification: 'Organic Certified',
+                        location: ' Kinnaur, Himachal Pradesh',
+                        quantity: '1000 kg available',
                         rating: 4.9
                     }
                 ]
             }
         ];
 
-        // Generate Fruit Cards
         function createFruitCards() {
             const fruitGrid = document.getElementById('fruitGrid');
             fruitGrid.innerHTML = fruitsData.map(fruit => `
@@ -317,7 +326,6 @@
             `).join('');
         }
 
-        // Show Detailed View
         function showDetailedView(fruitId) {
             const fruit = fruitsData.find(f => f.id === fruitId);
             const detailedView = document.getElementById('detailedView');
@@ -330,20 +338,19 @@
                 <p class="fruit-details"><strong>Season:</strong> ${fruit.season}</p>
                 <p class="fruit-details"><strong>Description:</strong> ${fruit.description}</p>
 
-                <h3>Available Farmers</h3>
+                <h3 style="margin: 20px 0;">Available Farmers</h3>
                 <div class="farmers-list">
                     ${fruit.farmers.map(farmer => `
                         <div class="farmer-card">
                             <div class="farmer-info">
                                 <p class="farmer-name">${farmer.name}</p>
-                                <p class="farmer-details"><strong>Location:</strong> ${farmer.location}</p>
-                                <p class="farmer-details"><strong>Experience:</strong> ${farmer.experience}</p>
-                                <p class="farmer-details"><strong>Capacity:</strong> ${farmer.capacity}</p>
-                                <p class="farmer-details"><strong>Certification:</strong> ${farmer.certification}</p>
-                                <p class="farmer-details"><strong>Rating:</strong> <span class="rating">${'⭐'.repeat(Math.round(farmer.rating))}</span> ${farmer.rating}</p>
+                                <p class="fruit-details"><strong>Location:</strong> ${farmer.location}</p>
+                                <p class="fruit-details"><strong>Quantity:</strong> ${farmer.quantity}</p>
+                                <p class="fruit-details"><strong>Rating:</strong> <span class="rating">${'⭐'.repeat(Math.round(farmer.rating))}</span> ${farmer.rating}</p>
                             </div>
-                            <div class="chat-option">
-                                <span class="chat-text">Chat</span>
+                            <div class="button-group">
+                                <button class="chat-button">Chat</button>
+                                <button class="deal-button" onclick="redirectToDealPage()">Make a Deal</button>
                             </div>
                         </div>
                     `).join('')}
@@ -352,21 +359,36 @@
             detailedView.style.display = 'block';
         }
 
-        // Hide Detailed View
         function hideDetailedView() {
             document.getElementById('detailedView').style.display = 'none';
         }
 
-        // Search Fruits
         function searchFruits() {
             const query = document.getElementById('searchBar').value.toLowerCase();
-            const filteredFruits = fruitsData.filter(fruit => fruit.name.toLowerCase().includes(query));
-            fruitsData.length = 0; // Reset fruits data array
-            fruitsData.push(...filteredFruits); // Push filtered data
-            createFruitCards(); // Refresh fruit cards grid
+            const filteredFruits = fruitsData.filter(fruit => 
+                fruit.name.toLowerCase().includes(query) || 
+                fruit.variety.toLowerCase().includes(query)
+            );
+            const fruitGrid = document.getElementById('fruitGrid');
+            fruitGrid.innerHTML = filteredFruits.map(fruit => `
+                <div class="fruit-card" onclick="showDetailedView(${fruit.id})">
+                    <img src="${fruit.image}" alt="${fruit.name}" class="fruit-image">
+                    <div class="fruit-info">
+                        <h3 class="fruit-name">${fruit.name}</h3>
+                        <p class="fruit-details">Variety: ${fruit.variety}</p>
+                        <p class="fruit-details">Season: ${fruit.season}</p>
+                        <p class="farmer-count">${fruit.farmers.length} Farmers Available</p>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        // Initial Render
+        function redirectToDealPage() {
+            alert('Redirecting to deal page...'); // Replace with actual redirect
+            // window.location.href = '/make-deal.html';
+        }
+
+        // Initial render
         createFruitCards();
     </script>
 </body>

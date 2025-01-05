@@ -5,23 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buyer Profile</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #141414;
+            color: #ffffff;
+        }
+        .navbar {
+            background-color: #0d091e;
+        }
+        .navbar .navbar-brand {
+            color: white;
+        }
+        .form-control {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: 1px solid #333;
+        }
+        .form-control:focus {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border-color: #38ef7d;
+            box-shadow: none;
+        }
+        .btn-primary {
+            background-color: #38ef7d;
+            border-color: #38ef7d;
+        }
+        .btn-primary:hover {
+            background-color: #32d66b;
+            border-color: #32d66b;
+        }
+        footer {
+            background-color: #0d091e;
+            color: #ffffff;
+            padding: 1rem 0;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Buyer Profile</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="buyerDashboard.html">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="buyerOrders.html">Orders</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="buyerLogout.html">Logout</a>
-                </li>
-            </ul>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="buyerDashboard.html">
+            <img src="logo.png.jpg" alt="Kisan Connect Logo" style="width: 35px; height: auto;">
+            Kisan Connect
+        </a>
     </nav>
     <main class="container mt-4">
         <h2>Your Profile</h2>
@@ -38,13 +65,33 @@
                 <label for="email"><b>Email Address</b></label>
                 <input type="email" id="email" class="form-control" name="email" placeholder="Email Address" required>
             </div>
+            <div class="form-group">
+                <label for="address"><b>Address</b></label>
+                <input type="text" id="address" class="form-control" name="address" placeholder="Enter Your Address" required>
+            </div>
+            <div class="form-group">
+                <label for="city"><b>City</b></label>
+                <input type="text" id="city" class="form-control" name="city" placeholder="Enter Your City" required>
+            </div>
+            <div class="form-group">
+                <label for="state"><b>State</b></label>
+                <input type="text" id="state" class="form-control" name="state" placeholder="Enter Your State" required>
+            </div>
+            <div class="form-group">
+                <label for="zip_code"><b>Zip Code</b></label>
+                <input type="text" id="zip_code" class="form-control" name="zip_code" placeholder="Enter Your Zip Code" required>
+            </div>
+            <div class="form-group">
+                <label for="country"><b>Country</b></label>
+                <input type="text" id="country" class="form-control" name="country" placeholder="Enter Your Country" required>
+            </div>
             <div class="col-md-6 offset-md-4">
                 <button type="submit" class="btn btn-primary">Update Profile</button>
             </div>
         </form>
     </main>
     <footer class="text-center mt-5">
-        <p>&copy; 2023 Agriculture Marketplace. All rights reserved.</p>
+        <p >&copy; 2025 Kisan Connect. All rights reserved.</p>
     </footer>
 </body>
 </html>

@@ -13,19 +13,85 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #141414; /* Dark background for consistency */
-            color: #ffffff; /* White text for contrast */
+            background-color: #141414;
+            color: #ffffff;
         }
         .navbar {
             background-color: #0d091e;
+            padding: 1rem 0;
         }
         .navbar .nav-link {
             color: white !important;
             font-weight: 500;
         }
+        .profile-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .profile-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(to right, #38ef7d, #11998e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 2rem;
+            width: 320px;
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 0.5rem;
+            display: none;
+            animation: slideDown 0.2s ease-out;
+            z-index: 1000;
+        }
+        .dropdown-menu.active {
+            display: block;
+        }
+        .menu-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.75rem;
+            text-decoration: none;
+            color: white;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+        .menu-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .item-icon {
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .item-content h3 {
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+            color: white;
+        }
+        .item-content p {
+            font-size: 0.75rem;
+            color: #888;
+        }
         header {
-            background: rgba(46, 137, 130, 0.8);
-            color: #ffffff;
+            background: linear-gradient(rgba(46, 137, 130, 0.8), rgba(46, 137, 130, 0.8));
             text-align: center;
             padding: 70px 0;
         }
@@ -36,11 +102,39 @@
         header p {
             font-size: 1.5rem;
         }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .search-input {
+            width: 80%;
+            padding: 15px;
+            font-size: 1rem;
+            border: 1px solid #333;
+            border-radius: 20px;
+            outline: none;
+            background-color: #f2eaea;
+            color: #ffffff;
+        }
+
+        .search-icon {
+            padding: 15px;
+            background-color: #bf995c;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-left: -50px;
+            z-index: 1;
+        }
         .dashboard {
             padding: 40px 20px;
             text-align: center;
         }
-        .dashboard .dashboard-item {
+        .dashboard-item {
+            position: relative;
+            overflow: hidden;
             background: linear-gradient(to bottom right, #38ef7d, #11998e);
             color: white;
             border-radius: 15px;
@@ -49,32 +143,72 @@
             box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease-in-out;
             cursor: pointer;
-            margin: 10px;
             border: 2px solid #fff;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-        .dashboard .dashboard-item:hover {
-            transform: scale(1.05);
+        .dashboard-item .item-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            transition: all 0.3s ease-in-out;
+        }
+        .dashboard-item:hover .item-bg {
+            transform: scale(1.1);
+            opacity: 0.5;
+        }
+        .dashboard-item:hover {
+            transform: translateY(-5px);
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .testimonials {
+            padding: 40px 20px;
+            background-color: #2c2c2c;
+            margin: 20px 0;
+        }
+        .testimonial {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            text-align: center;
         }
         footer {
             background: #11998e;
             color: white;
             padding: 20px 0;
         }
-        .icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .testimonials {
-            padding: 40px 20px;
-            background-color: #2c2c2c; /* Dark background for better contrast */
-            margin: 20px 0;
-        }
-        .testimonial {
-            font-size: 1.2rem; /* Increased font size for testimonials */
-            margin: 20px 0; /* Spacing between testimonials */
-            color: #ffffff; /* White text for better visibility */
-            text-align: center;
+        @media (max-width: 768px) {
+            .dropdown-menu {
+                width: calc(100% - 2rem);
+                right: 1rem;
+            }
+            
+            header h1 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
@@ -91,63 +225,115 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="buyerOrders.html">My Orders</a></li>
-                    <li class="nav-item"><a class="nav-link" href="buyerProfile.html">Profile</a></li>
-                    <li class="nav-item"><a class="nav-link" href="buyerLogout.html">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="guidelines.html">Guidelines</a></li>
+                    <li class="nav-item">
+                        <button class="profile-button nav-link" onclick="toggleDropdown()">
+                            <div class="profile-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <span>My Profile</span>
+                        </button>
+                    </li>
                 </ul>
             </div>
         </div>
+        <!-- Profile Dropdown -->
+        <div class="dropdown-menu" id="dropdown">
+            <a href="buyerOrders.html" class="menu-item">
+                <div class="item-icon orders">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <div class="item-content">
+                    <h3>My Orders</h3>
+                    <p>View your order history</p>
+                </div>
+            </a>
+            <a href="buyerProfile.html" class="menu-item">
+                <div class="item-icon profile">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="item-content">
+                    <h3>Profile Settings</h3>
+                    <p>Update your personal information</p>
+                </div>
+            </a>
+            <a href="contact.html" class="menu-item">
+                <div class="item-icon support">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="item-content">
+                    <h3>Contact Support</h3>
+                    <p>Get help when you need it</p>
+                </div>
+            </a>
+            <a href="buyerLogout.html" class="menu-item">
+                <div class="item-icon logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <div class="item-content">
+                    <h3>Logout</h3>
+                    <p>Sign out of your account</p>
+                </div>
+            </a>
+        </div>
     </nav>
-
     <!-- Header -->
     <header>
         <h1>Welcome to Kisan Connect</h1>
         <p>Empowering Buyers with Quality Produce</p>
-    </header>
-
-<!-- Dashboard Section -->
-<section id="dashboard" class="dashboard">
-    <h2 class="text-center mb-5">Buyer Dashboard</h2>
-    <div class="row g-4 justify-content-center">
-        <div class="col-lg-4 col-md-6">
-            <div class="dashboard-item" onclick="redirectTo('organic-fruits.html')">
-                <i class="fas fa-apple-alt icon"></i>
-                Organic Fruits
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="dashboard-item" onclick="redirectTo('fresh-vegetables.html')">
-                <i class="fas fa-carrot icon"></i>
-                Fresh Vegetables
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="dashboard-item" onclick="redirectTo('dairy-products.html')">
-                <i class="fas fa-glass-whiskey icon"></i>
-                Dairy Products
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="dashboard-item" onclick="redirectTo('poultry-products.html')">
-                <i class="fas fa-egg icon"></i>
-                Poultry Products
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="dashboard-item" onclick="redirectTo('exotic-vegetables.html')">
-                <i class="fas fa-pepper-hot icon"></i>
-                Exotic Vegetables
-            </div>
-        </div>
+    </header><br>
+    <div class="search-bar">
+        <input type="text" class="search-input" id="searchBar" placeholder="Search for anything....">
+        <span class="search-icon" onclick="searchFruits()">🔍</span>
     </div>
-</section>
-
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="dashboard">
+        <h2 class="text-center mb-5">Buyer Dashboard</h2>
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-4 col-md-6">
+                <div class="dashboard-item" onclick="redirectTo('organic-fruits.html')">
+                    <div class="item-bg"></div>
+                    <i class="fas fa-apple-alt icon"></i>
+                    <h3>Organic Fruits</h3>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="dashboard-item" onclick="redirectTo('fresh-vegetables.html')">
+                    <div class="item-bg"></div>
+                    <i class="fas fa-carrot icon"></i>
+                    <h3>Fresh Vegetables</h3>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="dashboard-item" onclick="redirectTo('dairy-products.html')">
+                    <div class="item-bg"></div>
+                    <i class="fas fa-glass-whiskey icon"></i>
+                    <h3>Dairy Products</h3>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="dashboard-item" onclick="redirectTo('poultry-products.html')">
+                    <div class="item-bg"></div>
+                    <i class="fas fa-egg icon"></i>
+                    <h3>Poultry Products</h3>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="dashboard-item" onclick="redirectTo('exotic-vegetables.html')">
+                    <div class="item-bg"></div>
+                    <i class="fas fa-pepper-hot icon"></i>
+                    <h3>Exotic Vegetables</h3>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Testimonials Section -->
     <section class="testimonials">
         <div class="container">
             <h2 class="text-center mb-5">Testimonials</h2>
             <div class="testimonial">
-                <p>"Kisan Connect has transformed my farming experience. The quality of produce is exceptional!"</p>
+                <p>"Kisan Connect has transformed my shopping experience. The quality of produce is exceptional!"</p>
                 <footer>— Rajesh Kumar, Buyer</footer>
             </div>
             <div class="testimonial">
@@ -155,12 +341,11 @@
                 <footer>— Anita Sharma, Customer</footer>
             </div>
             <div class="testimonial">
-                <p>"The support from Kisan Connect has been invaluable. They truly care about farmers!"</p>
+                <p>"The support from Kisan Connect has been invaluable. They truly care about customers!"</p>
                 <footer>— Suresh Patel, Buyer</footer>
             </div>
         </div>
     </section>
-
     <!-- Footer -->
     <footer>
         <div class="container text-center">
@@ -168,11 +353,20 @@
             <p>Customer Support: 1800 267 0997 | Email: customercare@kisanconnect.in</p>
         </div>
     </footer>
-
-    <!-- Scripts -->
     <script>
         function redirectTo(page) {
             window.location.href = page;
+        }
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown');
+            dropdown.classList.toggle('active');
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function closeDropdown(e) {
+                if (!e.target.closest('.profile-button') && !e.target.closest('.dropdown-menu')) {
+                    dropdown.classList.remove('active');
+                    document.removeEventListener('click', closeDropdown);
+                }
+            });
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

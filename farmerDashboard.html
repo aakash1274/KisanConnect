@@ -3,164 +3,404 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kisan Connect: Advanced Marketplace for Farmers and Customers">
-    <meta name="keywords" content="Farming, Fresh Produce, Dairy, Agricultural Tools">
-    <meta name="author" content="Kisan Connect Team">
     <title>Kisan Connect | Farmer Dashboard</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
-            background-color: #141414; /* Dark background for consistency */
-            color: #ffffff; /* White text for contrast */
         }
+        body {
+            background-color: #141414;
+            color: #ffffff;
+        }
+        /* Navbar Styles */
         .navbar {
             background-color: #0d091e;
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
-        .navbar .nav-link {
-            color: white !important;
-            font-weight: 500;
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        header {
-            background: rgba(46, 137, 130, 0.8);
-            color: #ffffff;
-            text-align: center;
-            padding: 70px 0;
-        }
-        header h1 {
-            font-size: 4rem;
-            font-weight: 700;
-        }
-        header p {
-            font-size: 1.5rem;
-        }
-        .dashboard {
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .dashboard-item {
-            background: linear-gradient(to bottom right, #38ef7d, #11998e);
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
             color: white;
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease-in-out;
+        }
+        .navbar-brand img {
+            width: 35px;
+            height: auto;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #38ef7d;
+        }
+        /* Profile Button and Dropdown */
+        .profile-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: none;
+            color: white;
             cursor: pointer;
-            margin: 10px;
-            border: 2px solid #fff;
-            flex: 1; /* Allow items to grow equally */
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
         }
-        .dashboard-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+        .profile-button:hover {
+            background-color: rgba(56, 239, 125, 0.1);
         }
-        .button-container {
+        .profile-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #38ef7d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 2rem;
+            width: 320px;
+            background-color: #1a1a1a;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 1rem;
+            margin-top: 0.5rem;
+            display: none;
+            animation: slideDown 0.2s ease-out;
+        }
+        .dropdown-menu.active {
+            display: block;
+        }
+        .menu-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.75rem;
+            text-decoration: none;
+            color: white;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease;
+        }
+        .menu-item:hover {
+            background-color: rgba(56, 239, 125, 0.1);
+        }
+        /* Header Styles */
+        .header {
+            background: linear-gradient(to right, #38ef7d, #11998e);
+            text-align: center;
+            padding: 100px 0 70px;
+            margin-top: 64px;
+        }
+        .header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .search-bar {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
+            margin-bottom: 30px;
         }
-        .testimonials {
-            padding: 40px 20px;
-            background-color: #2c2c2c; /* Dark background for better contrast */
-            margin: 20px 0;
+
+        .search-input {
+            width: 80%;
+            padding: 15px;
+            font-size: 1rem;
+            border: 1px solid #333;
+            border-radius: 20px;
+            outline: none;
+            background-color: #f2eaea;
+            color: #ffffff;
         }
-        .testimonial {
-            font-size: 1.2rem; /* Increased font size for testimonials */
-            margin: 20px 0; /* Spacing between testimonials */
-            color: #ffffff; /* White text for better visibility */
-            text-align: center;
-        }
-        footer {
-            background: #11998e;
+
+        .search-icon {
+            padding: 15px;
+            background-color: #bf995c;
             color: white;
-            padding: 20px 0;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-left: -50px;
+            z-index: 1;
+        }
+        /* Dashboard Section */
+        .dashboard {
+            padding: 4rem 2rem;
+        }
+        .dashboard-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+        .dashboard-card {
+            cursor: pointer;
+            min-height: 250px;
+            border-radius: 1rem;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .card-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+        .dashboard-card:hover .card-bg {
+            transform: scale(1.1);
+        }
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom right, rgba(56, 239, 125, 0.9), rgba(17, 153, 142, 0.9));
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        .dashboard-card:hover .card-overlay {
+            opacity: 0.9;
+        }
+        .card-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        /* Testimonials Section */
+        .testimonials {
+            background-color: #2c2c2c;
+            padding: 4rem 2rem;
+        }
+        .testimonial-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .testimonial-card {
+            background-color: #1a1a1a;
+            padding: 2rem;
+            border-radius: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        /* Footer */
+        .footer {
+            background: #11998e;
+            padding: 2rem;
+            text-align: center;
+        }
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            .dropdown-menu {
+                width: calc(100% - 2rem);
+                right: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
+    <nav class="navbar">
+        <div class="nav-container">
             <a class="navbar-brand text-white" href="farmerDashboard.html">
                 <img src="logo.png.jpg" alt="Kisan Connect Logo" style="width: 35px; height: auto;">
                 Kisan Connect
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="guidelines.html">Guidelines</a></li>
-                    <li class="nav-item"><a class="nav-link" href="farmerLogout.html">Logout</a></li>
-                </ul>
+            <div class="nav-links">
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="guidelines" class="nav-link">Guidelines</a>
+                <button class="profile-button" onclick="toggleDropdown()">
+                    <div class="profile-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span>My Profile</span>
+                </button>
             </div>
         </div>
+        <!-- Profile Dropdown -->
+        <div class="dropdown-menu" id="dropdown">
+            <a href="farmercontracts.html" class="menu-item">
+                <div class="item-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <div>
+                    <h3>My Contracts</h3>
+                    <p>View and manage your farming contracts</p>
+                </div>
+            </a>
+            <a href="farmerProfile.html" class="menu-item">
+                <div class="item-icon">
+                    <i class="fas fa-user-edit"></i>
+                </div>
+                <div>
+                    <h3>My Details</h3>
+                    <p>Update your personal information</p>
+                </div>
+            </a>
+            <a href="contact.html" class="menu-item">
+                <div class="item-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div>
+                    <h3>Contact Support</h3>
+                    <p>Get help when you need it</p>
+                </div>
+            </a>
+            <a href="farmerLogout.html" class="menu-item">
+                <div class="item-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <div>
+                    <h3>Logout</h3>
+                    <p>Sign out of your account</p>
+                </div>
+            </a>
+        </div>
     </nav>
-
     <!-- Header -->
- <header>
+    <header class="header">
         <h1>Welcome to Kisan Connect</h1>
-        <p>Empowering Farmers with Technology</p>
-    </header>
+        <h2>Empowering Farmers with Technology</h2>
+    </header><br>
+    <div class="search-bar">
+        <input type="text" class="search-input" id="searchBar" placeholder="Search for anything....">
+        <span class="search-icon" onclick="searchFruits()">🔍</span>
+    </div>
 
-    <!-- Dashboard Section -->
-    <section id="dashboard" class="dashboard">
-        <h2 class="text-center mb-5">Farmer Dashboard</h2>
-        <div class="button-container">
-            <div class="dashboard-item" onclick="redirectTo('market-trends.html')">
-                <i class="fas fa-chart-line icon"></i>
-                Market Trends
+    <!-- Dashboard Section --> 
+    <section class="dashboard">
+        <h2>Farmer Dashboard</h2>
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <a href="market-trends.html" class="dashboard-card">
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1605000797499-95a51c5269ae')"></div>
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <i class="fas fa-chart-line card-icon"></i>
+                    <h3>Market Trends</h3>
+                </div>
+                </a>
             </div>
-            <div class="dashboard-item" onclick="redirectTo('weather-updates.html')">
-                <i class="fas fa-cloud-sun icon"></i>
-                Weather Updates
+            <div class="dashboard-card">
+                <a href="weather-updates.html" class="dashboard-card">
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1601134467661-3d775b999c8b')"></div>
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <i class="fas fa-cloud-sun card-icon"></i>
+                    <h3>Weather Updates</h3>
+                </div>
+                </a>
             </div>
-            <div class="dashboard-item" onclick="redirectTo('equipment-rentals.html')">
-                <i class="fas fa-tools icon"></i>
-                Equipment Rentals
+            <div class="dashboard-card">
+                <a href="equipment-rentals.html" class="dashboard-card">
+                <div class="card-bg" style="background-image: url('https://images.unsplash.com/photo-1592982537447-7440770cbfc9')"></div>
+                <div class="card-overlay"></div>
+                <div class="card-content">
+                    <i class="fas fa-tools card-icon"></i>
+                    <h3>Equipment Rentals</h3>
+                </div>
+                </a>
             </div>
         </div>
     </section>
-
     <!-- Testimonials Section -->
     <section class="testimonials">
-        <div class="container">
-            <h2 class="text-center mb-5">Testimonials</h2>
-            <div class="testimonial">
+        <h2>Testimonials</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
                 <p>"Kisan Connect has transformed my farming experience. The quality of produce is exceptional!"</p>
                 <footer>— Rajesh Kumar, Farmer</footer>
             </div>
-            <div class="testimonial">
+            <div class="testimonial-card">
                 <p>"I love the convenience of ordering fresh fruits and vegetables online. Highly recommend!"</p>
                 <footer>— Anita Sharma, Customer</footer>
             </div>
-            <div class="testimonial">
+            <div class="testimonial-card">
                 <p>"The support from Kisan Connect has been invaluable. They truly care about farmers!"</p>
                 <footer>— Suresh Patel, Farmer</footer>
             </div>
         </div>
     </section>
-
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Kisan Connect. All rights reserved.</p>
-            <p>Customer Support: 1800 267 0997 | Email: customercare@kisanconnect.in</p>
-        </div>
+    <footer class="footer">
+        <p>&copy; 2025 Kisan Connect. All rights reserved.</p>
+        <p>Customer Support: 1800 267 0997 | Email: customercare@kisanconnect.in</p>
     </footer>
-
-    <!-- Scripts -->
     <script>
-        function redirectTo(page) {
-            window.location.href = page;
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown');
+            dropdown.classList.toggle('active');
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function closeDropdown(e) {
+                if (!e.target.closest('.profile-button') && !e.target.closest('.dropdown-menu')) {
+                    dropdown.classList.remove('active');
+                    document.removeEventListener('click', closeDropdown);
+                }
+            });
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

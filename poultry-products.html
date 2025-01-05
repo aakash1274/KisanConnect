@@ -3,343 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poultry Product Farmer Data</title>
+    <title>Poultry Marketplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
-        .search-bar {
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            text-align: center;
+
+        body {
+            background-color: #141414;
+            color: #ffffff;
         }
-        .search-input {
-            padding: 8px;
-            width: 80%;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
+
+        .navbar {
+            background-color: #0d091e;
+            padding: 1rem;
         }
-        .fruit-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 20px;
+
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+        }
+
+        .navbar a:hover {
+            color: #38ef7d;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
         }
-        .fruit-card {
-            background-color: #fff;
-            width: 300px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+
+        .header h1 {
+            color: #38ef7d;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #ccc;
+            font-size: 1.2rem;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .search-input {
+            width: 80%;
+            padding: 15px;
+            font-size: 1rem;
+            border: 1px solid #333;
+            border-radius: 20px;
+            outline: none;
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .search-icon {
+            padding: 15px;
+            background-color: #38ef7d;
+            color: white;
+            border-radius: 50%;
             cursor: pointer;
-            transition: transform 0.2s;
+            margin-left: -50px;
+            z-index: 1;
         }
+
+        .fruit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .fruit-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
         .fruit-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
+
         .fruit-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
+
         .fruit-info {
-            padding: 15px;
+            padding: 20px;
         }
+
         .fruit-name {
-            font-size: 24px;
-            margin: 0;
-        }
-        .fruit-details {
-            color: #555;
-            font-size: 14px;
-        }
-        .farmer-count {
-            font-size: 14px;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        .fruit-detail-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-        .fruit-details {
-            margin: 10px 0;
-        }
-        .farmers-list {
-            margin-top: 20px;
-            max-height: 400px; /* Set a max height for scrolling */
-            overflow-y: auto; /* Enable vertical scrolling */
-        }
-        .farmer-card {
-            background-color: #f9f9f9;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 1.5rem;
+            color: #38ef7d;
             margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
         }
-        .farmer-info {
-            width: 70%;
+
+        .fruit-details {
+            color: #ccc;
+            margin-bottom: 5px;
         }
-        .chat-option {
-            width: 25%;
-            text-align: center;
-            align-self: center;
+
+        .farmer-count {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: 10px;
         }
-        .chat-text {
-            background-color: #28a745;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .rating {
-            color: gold;
-        }
-        #detailedView {
+
+        .detailed-view {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: none;
-            align-items: center;
-            justify-content: center;
+            background-color: rgba(20, 20, 20, 0.95);
+            overflow-y: auto;
             z-index: 1000;
         }
-        #detailContent {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 80%;
-            max-width: 1000px;
-            overflow-y: auto;
-        }
-        #closeDetailView {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: red;
-            color: white;
+
+        .back-button {
+            background-color: #D3D3D3;
+            color: black;
             border: none;
-            border-radius: 50%;
-            font-size: 16px;
-            padding: 10px;
-            cursor: pointer;
-        }
-        #backButton {
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
+            padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 20px;
+            margin: 20px;
+ display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .detail-content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .fruit-detail-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .farmer-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .farmer-info {
+            flex: 1;
+        }
+
+        .farmer-name {
+            font-weight: 600;
+            color: #38ef7d;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .chat-button {
+            background-color: #38ef7d;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            border: none;
+            font-size: 16px;
+        }
+
+        .deal-button {
+            background-color: #EF4444;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            border: none;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            width: 150px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .deal-button:hover {
+            transform: scale(1.05);
+            background-color: #DC2626;
+        }
+
+        .rating {
+            color: #FFD700;
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .fruit-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .farmer-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .farmer-info {
+                margin-bottom: 15px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <header class="header">
+            <h1>Poultry Marketplace</h1>
+            <p>Connect directly with farmers for fresh, organic poultry products</p>
+        </header>
 
-    <div class="search-bar">
-        <input type="text" class="search-input" id="searchInput" placeholder="Search for poultry products..." oninput="filterProducts()">
+        <div class="search-bar">
+            <input type="text" class="search-input" id="searchBar" placeholder="Search for poultry products...">
+            <span class="search-icon" onclick="searchFruits()">🔍</span>
+        </div>
+
+        <div class="fruit-grid" id="fruitGrid"></div>
     </div>
 
-    <div class="fruit-grid" id="fruitGrid"></div>
-
-    <div id="detailedView">
-        <div id="detailContent">
-            <button id="closeDetailView" onclick="hideDetailedView()">X</button>
-            <h2 id="productName"></h2>
-            <img id="productImage" class="fruit-detail-image" />
-            <p id="productDetails"></p>
-            <button id="backButton" onclick="backToSelection()">Back to Selection</button>
-            <h3>Available Farmers</h3>
-            <div id="farmersList"></div>
-        </div>
+    <div class="detailed-view" id="detailedView">
+        <button class="back-button" onclick="hideDetailedView()">← Back to Selection</button>
+        <div class="detail-content" id="detailContent"></div>
     </div>
 
     <script>
-        const poultryData = [
+        const fruitsData = [
             {
                 id: 1,
                 name: 'Chicken Meat',
                 variety: 'Broiler',
-                season: 'Year-round',
-                image: 'https://via.placeholder.com/400x250?text=Chicken+Meat',
-                description: 'Chicken meat is a lean protein source, rich in vitamins and minerals essential for body growth.',
-                benefits: 'Rich in protein, promotes muscle growth, helps in maintaining healthy bones, and is a great source of vitamins.',
+                season: 'Available year-round',
+                image: '/api/placeholder/400/250',
+                description: 'Fresh broiler chicken meat sourced from certified farms.',
                 farmers: [
                     {
-                        name: 'Ajay Yadav',
-                        location: 'Hyderabad, Telangana',
-                        experience: '12 years',
-                        capacity: '500 kg/week',
-                        certification: 'Organic Certified',
+                        name: 'Ramesh Gupta',
+                        location: 'Pune, Maharashtra',
+                        quantity: ' 300 kg available',
                         rating: 4.7
                     },
                     {
-                        name: 'Ramesh Kumar',
-                        location: 'Bhopal, Madhya Pradesh',
-                        experience: '8 years',
-                        capacity: '400 kg/week',
-                        certification: 'Global GAP',
-                        rating: 4.5
+                        name: 'Anita Sharma',
+                        location: 'Jaipur, Rajasthan',
+                        quantity: '200 kg available',
+                        rating: 4.8
                     }
                 ]
             },
             {
                 id: 2,
                 name: 'Eggs',
-                variety: 'Brown',
-                season: 'Year-round',
-                image: 'https://via.placeholder.com/400x250?text=Eggs',
-                description: 'Eggs are a great source of protein, omega-3 fatty acids, and essential vitamins like B12.',
-                benefits: 'Supports muscle building, improves eye health, helps in weight loss, and boosts metabolism.',
+                variety: 'Organic',
+                season: 'Available year-round',
+                image: '/api/placeholder/400/250',
+                description: 'Organic eggs from free-range hens, rich in nutrients.',
                 farmers: [
                     {
-                        name: 'Vikram Patel',
-                        location: 'Patna, Bihar',
-                        experience: '15 years',
-                        capacity: '1000 eggs/week',
-                        certification: 'Organic Certified',
-                        rating: 4.9
-                    },
-                    {
-                        name: 'Rajesh Sharma',
-                        location: 'Chandigarh',
-                        experience: '10 years',
-                        capacity: '1500 eggs/week',
-                        certification: 'FSSAI',
-                        rating: 4.6
-                    }
-                ]
-            },
-            {
-                id: 3,
-                name: 'Duck Meat',
-                variety: 'Domestic',
-                season: 'November-February',
-                image: 'https://via.placeholder.com/400x250?text=Duck+Meat',
-                description: 'Duck meat is a rich source of protein and a unique delicacy with a high-fat content compared to chicken.',
-                benefits: 'Rich in iron and protein, promotes muscle growth, provides energy, and supports brain health.',
-                farmers: [
-                    {
-                        name: 'Kamal Singh',
-                        location: 'Agra, Uttar Pradesh',
-                        experience: '10 years',
-                        capacity: '300 kg/week',
-                        certification: 'Organic Certified',
-                        rating: 4.6
-                    },
-                    {
-                        name: 'Sushil Kumar',
-                        location: 'Nagpur, Maharashtra',
-                        experience: '6 years',
-                        capacity: '400 kg/week',
-                        certification: 'Global GAP',
-                        rating: 4.5
-                    }
-                ]
-            },
-            {
-                id: 4,
-                name: 'Turkey Meat',
-                variety: 'Broad Breasted White',
-                season: 'November-January',
-                image: 'https://via.placeholder.com/400x250?text=Turkey+Meat',
-                description: 'Turkey meat is a lean source of protein, rich in essential amino acids and minerals.',
-                benefits: 'Promotes muscle growth, supports immune health, reduces bad cholesterol, and boosts metabolism.',
-                farmers: [
-                    {
-                        name: 'Anil Reddy',
+                        name: 'Amit Khanna',
                         location: 'Bangalore, Karnataka',
-                        experience: '9 years',
-                        capacity: '600 kg/week',
-                        certification: 'FSSAI',
-                        rating: 4.7
-                    },
-                    {
-                        name: 'Nikhil Verma',
-                        location: 'Pune, Maharashtra',
-                        experience: '5 years',
-                        capacity: '450 kg/week',
-                        certification: 'Organic Certified',
-                        rating: 4.4
+                        quantity: '1000 units available',
+                        rating: 4.9
                     }
                 ]
             }
         ];
 
-        function createPoultryCards() {
-            const productGrid = document.getElementById('fruitGrid');
-            productGrid.innerHTML = poultryData.map(product => `
-                <div class="fruit-card" onclick="showDetailedView(${product.id})">
-                    <img src="${product.image}" alt="${product.name}" class="fruit-image">
+        function createFruitCards() {
+            const fruitGrid = document.getElementById('fruitGrid');
+            fruitGrid.innerHTML = fruitsData.map(fruit => `
+                <div class="fruit-card" onclick="showDetailedView(${fruit.id})">
+                    <img src="${fruit.image}" alt="${fruit.name}" class="fruit-image">
                     <div class="fruit-info">
-                        <h3 class="fruit-name">${product.name}</h3>
-                        <p class="fruit-details">Variety: ${product.variety}</p>
-                        <p class="fruit-details">Season: ${product.season}</p>
-                        <p class="farmer-count">${product.farmers.length} Farmers Available</p>
+                        <h3 class="fruit-name">${fruit.name}</h3>
+                        <p class="fruit-details">Variety: ${fruit.variety}</p>
+                        <p class="fruit-details">Season: ${fruit.season}</p>
+                        <p class="farmer-count">${fruit.farmers.length} Farmers Available</p>
                     </div>
                 </div>
             `).join('');
         }
 
-        function showDetailedView(productId) {
-            const product = poultryData.find(p => p.id === productId);
-            document.getElementById('productName').innerText = product.name;
-            document.getElementById('productImage').src = product.image;
-            document.getElementById('productDetails').innerHTML = `
-                <p><strong>Variety:</strong> ${product.variety}</p>
-                <p><strong>Season:</strong> ${product.season}</p>
-                <p><strong>Description:</strong> ${product.description}</p>
-                <p><strong>Benefits:</strong> ${product.benefits}</p>
-            `;
-            const farmersList = document.getElementById('farmersList');
-            farmersList.innerHTML = product.farmers.map(farmer => `
-                <div class="farmer-card">
-                    <div class="farmer-info">
-                        <p class="farmer-name">${farmer.name}</p>
-                        <p class="farmer-details"><strong>Location:</strong> ${farmer.location}</p>
-                        <p class="farmer-details"><strong>Experience:</strong> ${farmer.experience}</p>
-                        <p class="farmer-details"><strong>Capacity:</strong> ${farmer.capacity}</p>
-                        <p class="farmer-details"><strong>Certification:</strong> ${farmer.certification}</p>
-                        <p class="farmer-details"><strong>Rating:</strong> <span class="rating">${'⭐'.repeat(Math.round(farmer.rating))}</span> ${farmer.rating}</p>
-                    </div>
-                    <div class="chat-option">
-                        <span class="chat-text">Chat</span>
-                    </div>
+        function showDetailedView(fruitId) {
+            const fruit = fruitsData.find(f => f.id === fruitId);
+            const detailedView = document.getElementById('detailedView');
+            const detailContent = document.getElementById('detailContent');
+
+            detailContent.innerHTML = `
+                <img src="${fruit.image}" alt="${fruit.name}" class="fruit-detail-image">
+                <h2 class="fruit-name">${fruit.name}</h2>
+                <p class="fruit-details"><strong>Variety:</strong> ${fruit.variety}</p>
+                <p class="fruit-details"><strong>Season:</strong> ${fruit.season}</p>
+                <p class="fruit-details"><strong>Description:</strong> ${fruit.description}</p>
+
+                <h3 style="margin: 20px 0;">Available Farmers</h3>
+                <div class="farmers-list">
+                    ${fruit.farmers.map(farmer => `
+                        <div class="farmer-card">
+                            <div class="farmer-info">
+                                <p class="farmer-name">${farmer.name}</p>
+                                <p class="fruit-details"><strong>Location:</strong> ${farmer.location}</p>
+                                <p class="fruit-details"><strong>Quantity:</strong> ${farmer.quantity}</p>
+                                <p class="fruit-details"><strong>Rating:</strong> <span class="rating">${'⭐'.repeat(Math.round(farmer.rating))}</span> ${farmer.rating}</p>
+                            </div>
+                            <div class="button-group">
+                                <button class="chat-button">Chat</button>
+                                <button class="deal-button" onclick="redirectToDealPage()">Make a Deal</button>
+                            </div>
+                        </div>
+                    `).join('')}
                 </div>
-            `).join('');
-            document.getElementById('detailedView').style.display = 'flex';
+            `;
+            detailedView.style.display = 'block';
         }
 
         function hideDetailedView() {
             document.getElementById('detailedView').style.display = 'none';
         }
 
-        function backToSelection() {
-            document.getElementById('detailedView').style.display = 'none';
+        function searchFruits() {
+            const query = document.getElementById('searchBar').value.toLowerCase();
+            const filteredFruits = fruitsData.filter(fruit => 
+                fruit.name.toLowerCase().includes(query) || 
+                fruit.variety.toLowerCase().includes(query)
+            );
+            const fruitGrid = document.getElementById('fruitGrid');
+            fruitGrid.innerHTML = filteredFruits.map(fruit => `
+                <div class="fruit-card" onclick="showDetailedView(${fruit.id})">
+                    <img src="${fruit.image}" alt="${fruit.name}" class="fruit-image">
+                    <div class="fruit-info">
+                        <h3 class="fruit-name">${fruit.name}</h3>
+                        <p class="fruit-details">Variety: ${fruit.variety}</p>
+                        <p class="fruit-details">Season: ${fruit.season}</p>
+                        <p class="farmer-count">${fruit.farmers.length} Farmers Available</p>
+                    </div>
+                </div>
+            `).join('');
         }
 
-        function filterProducts() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filteredProducts = poultryData.filter(product => product.name.toLowerCase().includes(query));
-            poultryData.length = 0;
-            poultryData.push(...filteredProducts);
-            createPoultryCards();
+        function redirectToDealPage() {
+            alert('Redirecting to deal page...'); // Replace with actual redirect
+            // window.location.href = '/make-deal.html';
         }
 
-        createPoultryCards();
+        // Initial render
+        createFruitCards();
     </script>
 </body>
 </html>

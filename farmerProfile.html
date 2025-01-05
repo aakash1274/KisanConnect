@@ -3,186 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kisan Connect - Dashboard</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Farmer Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #141414; /* Dark background */
-            color: #ffffff; /* White text for contrast */
+            background-color: #141414;
+            color: #ffffff;
         }
-
         .navbar {
-            background-color: #0d091e; /* Dark navbar */
+            background-color: #0d091e;
         }
-
-        .navbar a {
-            color: #ffd700; /* Gold color for links */
-            font-weight: bold;
-            margin-right: 20px; /* Increased spacing */
-        }
-
-        .navbar a:hover {
-            color: white; /* Change color on hover */
-        }
-
-        .welcome-section {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            margin: 20px auto;
-            max-width: 80%;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .button-container button {
-            background-color: #4CAF50;
+        .navbar .navbar-brand {
             color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
         }
-
-        .button-container button:hover {
-            background-color: #45a049;
-            transform: translateY(-2px);
+        .form-control {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border: 1px solid #333;
         }
-
-        .table-container {
-            margin: 20px auto;
-            max-width: 80%;
+        .form-control:focus {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border-color: #38ef7d;
+            box-shadow: none;
         }
-
-        .table {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+        .btn-primary {
+            background-color: #38ef7d;
+            border-color: #38ef7d;
         }
-
-        .table th, .table td {
-            color: #ffffff; /* White text for table */
+        .btn-primary:hover {
+            background-color: #32d66b;
+            border-color: #32d66b;
         }
-
-        .table th {
-            background-color: rgba(255, 255, 255, 0.3); /* Lighter background for headers */
-        }
-
         footer {
-            text-align: center;
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+            background-color: #0d091e;
+            color: #ffffff;
+            padding: 1rem 0;
         }
     </style>
 </head>
 <body>
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <a class="navbar-brand text-white" href="index.html">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="farmerDashboard.html">
             <img src="logo.png.jpg" alt="Kisan Connect Logo" style="width: 35px; height: auto;">
             Kisan Connect
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/orders">View Orders</a></li>
-                <li class="nav-item"><a class="nav-link" href="/earnings">View Earnings</a></li>
-                <li class="nav-item"><a class="nav-link" href="/chat">Chat with Buyer</a></li>
-                <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- Welcome Section -->
-<div class="welcome-section">
-    <h1>Welcome, John Doe!</h1>
-    <p>Your Market, Your Rules.</p>
-</div>
-
-<!-- Button Container -->
- <div class="button-container">
-    <button onclick="location.href='/orders'">View Orders</button>
-    <button onclick="location.href='/earnings'">View Earnings</button>
-    <button onclick="location.href='/chat'">Chat with Buyer</button>
-</div>
-
-<!-- Recent Orders Section -->
-<div class="table-container">
-    <h2 class="text-center">Recent Orders</h2>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Order ID</th>
-                <th>Buyer</th>
-                <th>Crop</th>
-                <th>Amount (kg)</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>Buyer 1</td>
-                <td>Wheat</td>
-                <td>1000</td>
-                <td>Pending</td>
-                <td><button class="btn btn-info" onclick="viewDetails(1)">View Details</button></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Buyer 2</td>
-                <td>Rice</td>
-                <td>500</td>
-                <td>Completed</td>
-                <td><button class="btn btn-info" onclick="viewDetails(2)">View Details</button></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Buyer 3</td>
-                <td>Barley</td>
-                <td>750</td>
-                <td>Shipped</td>
-                <td><button class="btn btn-info" onclick="viewDetails(3)">View Details</button></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-
-<!-- Footer -->
-<footer>
-    <p>&copy; 2025 Kisan Connect. All rights reserved.</p>
-    <p>
-        <a href="/privacy-policy" style="color: white; text-decoration: underline;">Privacy Policy</a> |
-        <a href="/terms" style="color: white; text-decoration: underline;">Terms of Service</a>
-    </p>
-</footer>
-
-<script>
-    // Function to handle viewing order details
-    function viewDetails(orderId) {
-        alert(`Viewing details for Order ID: ${orderId}`);
-        // Redirect to order details page or handle further logic here
-    }
-</script>
+    </nav>
+    <main class="container mt-4">
+        <h2>Your Profile</h2>
+        <form action="farmerDashboard.html" method="post">
+            <div class="form-group">
+                <label for="full_name"><b>Full Name</b></label>
+                <input type="text" id="full_name" class="form-control" name="name" placeholder="Enter Your Name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone_number"><b>Phone Number</b></label>
+                <input type="text" id="phone_number" class="form-control" name="phonenumber" placeholder="Phone Number" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><b>Email Address</b></label>
+                <input type="email" id="email" class="form-control" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+                <label for="farm_name"><b>Farm Name</b></label>
+                <input type="text" id="farm_name" class="form-control" name="farmname" placeholder="Enter Your Farm Name" required>
+            </div>
+            <div class="form-group">
+                <label for="address"><b>Address</b></label>
+                <input type="text" id="address" class="form-control" name="address" placeholder="Enter Your Address" required>
+            </div>
+            <div class="form-group">
+                <label for="city"><b>City</b></label>
+                <input type="text" id="city" class="form-control" name="city" placeholder="Enter Your City" required>
+            </div>
+            <div class="form-group">
+                <label for="state"><b>State</b></label>
+                <input type="text" id="state" class="form-control" name="state" placeholder="Enter Your State" required>
+            </div>
+            <div class="form-group">
+                <label for="zip_code"><b>Zip Code</b></label>
+                <input type="text" id="zip_code" class="form-control" name="zip_code" placeholder="Enter Your Zip Code" required>
+            </div>
+            <div class="form-group">
+                <label for="country"><b>Country</b></label>
+                <input type="text" id="country" class="form-control" name="country" placeholder="Enter Your Country" required>
+            </div>
+            <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </div>
+        </form>
+    </main>
+    <footer class ```html
+    ="text-center mt-5">
+        <p>&copy; 2023 Agriculture Marketplace. All rights reserved.</p>
+    </footer>
 </body>
 </html>

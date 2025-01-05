@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make a Deal Popup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .popup {
+            width: 500px;
+            max-height: 600px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            animation: fadeIn 0.3s ease-in-out;
+            padding: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .header h2 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .close-button {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background-color: #gray;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .close-button:hover {
+            background-color: #ff6b6b;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            height: 40px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .date-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .date-group div {
+            flex: 1;
+        }
+
+        .quantity-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .quantity-group input {
+            flex: 2;
+        }
+
+        .quantity-group select {
+            flex: 1;
+        }
+
+        .submit-button {
+            display: block;
+            width: 200px;
+            height: 50px;
+            margin: 30px auto;
+            background-color: #FF4C4C;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #CC0000;
+            transform: scale(1.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .success-message {
+            text-align: center;
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup">
+        <div class="header">
+            <h2>Propose a Deal</h2>
+            <button class="close-button">×</button>
+        </div>
+        <form id="dealForm">
+            <div class="form-group">
+                <label for="cropName">Crop Name</label>
+                <select id="cropName" required>
+                    <option value="">Select a crop</option>
+                    <option value="wheat">Wheat</option>
+                    <option value="rice">Rice</option>
+                    <option value="corn">Corn</option>
+                    <option value="soybean">Soybean</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Duration of Crop</label>
+                <div class="date-group">
+                    <div>
+                        <label for="fromDate">From</label>
+                        <input type="date" id="fromDate" required>
+                    </div>
+                    <div>
+                        <label for="toDate">To</label>
+                        <input type="date" id="toDate" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="buyerName">Buyer Name</label>
+                <input type="text" id="buyerName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="contactInfo">Contact Information</label>
+                <input type="text" id="contactInfo" placeholder="Phone or Email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity of the Crop</label>
+                <div class="quantity-group">
+                    <input type="number" id="quantity" required>
+                    <select id="unit">
+                        <option value="kg">kg</option>
+                        <option value="tons">tons</option>
+                        <option value="quintals">quintals</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-button">PROPOSE A DEAL</button>
+            <div id="successMessage" class="success-message">
+                Deal proposed successfully! The farmer has been notified.
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('dealForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const dealDetails = {
+                cropName: document.getElementById('cropName').value,
+                duration: {
+                    from: document.getElementById('fromDate').value,
+                    to: document.getElementById('toDate').value,
+                },
+                buyerName: document.getElementById('buyerName').value,
+                contactInfo: document.getElementById('contactInfo').value,
+                quantity: document.getElementById('quantity').value,
+                unit: document.getElementById('unit').value
+            };
+
+            // Simulating API call
+            setTimeout(() => {
+                console.log('Deal Details:', dealDetails);
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Reset form after 2 seconds
+                setTimeout(() => {
+                    document.getElementById('dealForm').reset();
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 2000);
+            }, 1000);
+        });
+
+        document.querySelector('.close-button').addEventListener('click', function() {
+            // In a real implementation, this would close the popup
+            console.log('Close button clicked');
+        });
+
+        // Validate that "To" date is after "From" date
+        document.getElementById('toDate').addEventListener('change', function() {
+            const fromDate = document.getElementById('fromDate').value;
+            const toDate = this.value;
+            
+            if (fromDate && toDate && fromDate > toDate) {
+                alert('To date must be after From date');
+                this.value = '';
+            }
+        });
+    </script>
+</body>
+</html>

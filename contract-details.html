@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract Details</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Base styles */
+        :root {
+            --success: #9FE62C;
+            --success-hover: #8ACC25;
+            --success-dark: #7AB31F;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #111827;
+            color: #fff;
+        }
+        /* Layout */
+        .container {
+            max-width: 1024px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+        /* Back button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--success);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+        .back-button:hover {
+            color: var(--success-hover);
+        }
+        /* Card styles */
+        .card {
+            background-color: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid #374151;
+            border-radius: 0.5rem;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #374151;
+        }
+        .card-title {
+            color: var(--success);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-content {
+            padding: 1.5rem;
+        }
+        /* Grid layout */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        /* Info sections */
+        .info-section {
+            margin-bottom: 1.5rem;
+        }
+        .info-section h3 {
+            color: var(--success);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            color: #D1D5DB;
+        }
+        /* Chat window */
+        .chat-window {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            width: 320px;
+            background-color: #1F2937;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.3s ease-out;
+        }
+        .chat-header {
+            background-color: var(--success);
+            color: #111827;
+            padding: 0.75rem 1rem;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-content {
+            height: 256px;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        .chat-message {
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            max-width: 80%;
+        }
+        .chat-message.received {
+            background-color: #374151;
+            color: #D1D5DB;
+        }
+        .chat-message.sent {
+            background-color: var(--success);
+            color: #111827;
+            margin-left: auto;
+        }
+        .chat-input {
+            padding: 1rem;
+            border-top: 1px solid #374151;
+        }
+        .chat-input input {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            border: 1px solid #374151;
+            background-color: #1F2937;
+            color: #D1D5DB;
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Icons */
+        .icon {
+            width: 20px;
+            height: 20px;
+            color: var(--success);
+        }
+        /* Buttons */
+        .icon-button {
+            background: transparent;
+            border: none;
+            color: var(--success);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.3s;
+        }
+        .icon-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .close-button {
+            background: transparent;
+            border: none;
+            color: #111827;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Back button -->
+        <button class="back-button">
+            <i data-lucide="arrow-left"></i>
+            Back to Contracts
+        </button>
+        <!-- Contract details card -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span>
+                        <i data-lucide="package"></i>
+                        Rice Supply Contract
+                    </span>
+                    <button class="icon-button">
+                        <i data-lucide="message-circle"></i>
+                    </button>
+                </h2>
+            </div>
+            <div class="card-content">
+                <div class="grid">
+                    <!-- Buyer Information -->
+                    <div class="info-section">
+                        <h3>Buyer Information</h3>
+                        <div class="info-item">
+                            <i data-lucide="user"></i>
+                            <p>Name: Sarah Johnson</p>
+                        </div>
+                        <div class="info-item">
+                            <i data-lucide="clock"></i>
+                            <p>Status: Active</p>
+                        </div>
+                        <div class="info-item">
+                            <i data-lucide="calendar"></i>
+                            <p>Join Date: 2023-12-01</p>
+                        </div>
+                    </div>
+                    <!-- Contract Details -->
+                    <div class="info-section">
+                        <h3>Contract Details</h3>
+                        <div class="info-item">
+                            <p>Crop Type: Wheat</p>
+                        </div>
+                        <div class="info-item">
+                            <p>Quantity: 300 tons</p>
+                        </div>
+                        <div class="info-item">
+                            <p>Price: $350/ton</p>
+                        </div>
+                        <div class="info-item">
+                            <p>Start Date: 2025-01-15</p>
+                        </div>
+                        <div class="info-item">
+                            <p>Duration: 4 months</p>
+                        </div>
+                        <div class="info-item">
+                            <p>Payment Terms: Net 30</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Chat Window -->
+        <div class="chat-window">
+            <div class="chat-header">
+                <span>Chat with Buyer</span>
+                <button class="close-button">×</button>
+            </div>
+            <div class="chat-content">
+                <div class="chat-message received">
+                    Hello, I'm interested in discussing the contract details.
+                </div>
+                <div class="chat-message sent">
+                    Sure, I'd be happy to discuss. What would you like to know?
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message...">
+            </div>
+        </div>
+    </div>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
