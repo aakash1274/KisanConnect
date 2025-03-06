@@ -38,6 +38,12 @@
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         }
 
         .section-title {
@@ -75,6 +81,8 @@
             border: 1px solid #ccc;
             border-radius: 5px 0 0 5px;
             outline: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
         }
 
         .search-bar button {
@@ -84,6 +92,7 @@
             border: none;
             border-radius: 0 5px 5px 0;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .search-bar button:hover {
@@ -98,10 +107,25 @@
 
         .graph-container {
             margin-top: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .btn-success {
+            background-color: #38be14;
+            border: none;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-success:hover {
+            background-color: #28a745;
         }
     </style>
 </head>
 <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand text-white" href="farmerDashboard.html">
@@ -125,31 +149,37 @@
     </nav>
 
     <div class="container">
+        <!-- Introduction Section -->
         <div class="content-section">
             <h1 class="mt-4 section-title">Agriculture Industry in India</h1>
- <p>The Indian agriculture industry plays a critical role in the nation's economy, bridging the gap between farmers and buyers. By leveraging technology and streamlined supply chains, the market has created a more efficient ecosystem, ensuring better profits for farmers and quality produce for buyers.</p>
+            <p>The Indian agriculture industry plays a critical role in the nation's economy, bridging the gap between farmers and buyers. By leveraging technology and streamlined supply chains, the market has created a more efficient ecosystem, ensuring better profits for farmers and quality produce for buyers.</p>
         </div>
 
+        <!-- Importance of Agriculture Section -->
         <div class="content-section">
             <h2 class="section-title">Importance of Agriculture</h2>
             <p>Agriculture is the backbone of the Indian economy, contributing significantly to the GDP and providing employment to a large portion of the population. It not only ensures food security but also supports various industries such as textiles, food processing, and biofuels.</p>
         </div>
 
+        <!-- Challenges Faced Section -->
         <div class="content-section">
             <h2 class="section-title">Challenges Faced</h2>
             <p>Despite its importance, the agriculture sector faces numerous challenges including climate change, water scarcity, and fluctuating market prices. Addressing these issues is crucial for sustainable growth and development in the sector.</p>
         </div>
 
+        <!-- Selection Buttons -->
         <div class="selection-section text-center">
             <button class="btn btn-success" onclick="showSection('fruits')">Fruits</button>
             <button class="btn btn-success" onclick="showSection('vegetables')">Vegetables</button>
         </div>
 
+        <!-- Search Bar -->
         <div class="search-bar">
             <input type="text" id="searchInput" placeholder="Search for a fruit or vegetable...">
             <button onclick="searchTable()">Search</button>
         </div>
 
+        <!-- Fruits Table -->
         <div id="fruits" class="table-container">
             <h2>Fruits and Their Prices</h2>
             <table class="table table-bordered">
@@ -163,25 +193,25 @@
                 </thead>
                 <tbody id="fruitTableBody">
                     <tr>
-                        <td><img src="https://example.com/apple.jpg" alt="Apple">Apple</td>
+                        <td><img src="https://via.placeholder.com/50" alt="Apple">Apple</td>
                         <td>150/kg</td>
                         <td>Winter</td>
                         <td>Rich in fiber, improves digestion</td>
                     </tr>
                     <tr>
-                        <td><img src="https://example.com/banana.jpg" alt="Banana">Banana</td>
+                        <td><img src="https://via.placeholder.com/50" alt="Banana">Banana</td>
                         <td>50/dozen</td>
                         <td>Year-round</td>
                         <td>High potassium, boosts energy</td>
                     </tr>
                     <tr>
-                        <td><img src="https://example.com/orange.jpg" alt="Orange">Orange</td>
+                        <td><img src="https://via.placeholder.com/50" alt="Orange">Orange</td>
                         <td>80/kg</td>
                         <td>Winter</td>
                         <td>High in vitamin C, boosts immunity</td>
                     </tr>
                     <tr>
-                        <td><img src="https://example.com/grapes.jpg" alt="Grapes">Grapes</td>
+                        <td><img src="https://via.placeholder.com/50" alt="Grapes">Grapes</td>
                         <td>120/kg</td>
                         <td>Summer</td>
                         <td>Rich in antioxidants, good for heart</td>
@@ -190,6 +220,7 @@
             </table>
         </div>
 
+        <!-- Vegetables Table -->
         <div id="vegetables" class="table-container" style="display:none;">
             <h2>Vegetables and Their Prices</h2>
             <table class="table table-bordered">
@@ -203,25 +234,25 @@
                 </thead>
                 <tbody id="vegetableTableBody">
                     <tr>
-                        <td><img src="https://example.com/tomato.jpg" alt="Tomato">Tomatoes</td>
+                        <td><img src="https://via.placeholder.com/50" alt="Tomato">Tomatoes</td>
                         <td>40/kg</td>
                         <td>Summer</td>
                         <td>Rich in vitamin C, good for skin</td>
                     </tr>
                     <tr>
-                        <td><img src="https://example.com/potato.jpg" alt="Potato">Potatoes</td>
+                        <td><img src="https://via.placeholder.com/50" alt="Potato">Potatoes</td>
                         <td>30/kg</td>
                         <td>Year-round</td>
                         <td>High in carbohydrates, provides energy</td>
                     </tr>
                     <tr>
-                        <td><img src="https://example.com/cabbage.jpg" alt="Cabbage">Cabbage</td>
+                        <td><img src="https://via.placeholder.com/50" alt="Cabbage">Cabbage</td>
                         <td>25/kg</td>
                         <td>Winter</td>
                         <td>Rich in vitamins K and C, good for digestion</td>
                     </tr>
                     <tr>
-                        <td><img src="https://example.com /carrot.jpg" alt="Carrot">Carrots</td>
+                        <td><img src="https://via.placeholder.com/50" alt="Carrot">Carrots</td>
                         <td>40/kg</td>
                         <td>Winter</td>
                         <td>High in beta-carotene, good for vision</td>
@@ -230,6 +261,7 @@
             </table>
         </div>
 
+        <!-- Graph Container -->
         <div class="graph-container">
             <canvas id="trendGraph" width="400" height="200"></canvas>
         </div>
