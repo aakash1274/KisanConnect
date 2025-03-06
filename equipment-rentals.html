@@ -29,7 +29,7 @@
 
         #intro {
             text-align: center;
-            padding: 40px 20px;
+            padding: 60px 20px;
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
@@ -68,14 +68,16 @@
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            margin: 20px;
+            margin: 20px auto;
+            max-width: 1200px; /* Limit width for better centering */
         }
 
         .equipment-item {
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 12px;
-            padding: 15px; /* Reduced padding */
-            width: 250px; /* Reduced width */
+            padding: 20px;
+            width: 100%;
+            max-width: 300px; /* Fixed width for consistency */
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
@@ -88,8 +90,19 @@
 
         .equipment-item img {
             width: 100%;
-            height: auto;
+            height: 150px;
+            object-fit: cover;
             border-radius: 8px;
+        }
+
+        .equipment-item h3 {
+            margin: 15px 0 10px;
+            font-size: 20px;
+        }
+
+        .equipment-item p {
+            margin: 5px 0;
+            font-size: 14px;
         }
 
         .equipment-item button {
@@ -100,12 +113,9 @@
             padding: 10px 15px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
-            font-size: 16px; /* Reduced font size */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
+            font-size: 16px;
+            margin-top: 15px;
+            width: 100%;
         }
 
         .equipment-item button:hover {
@@ -128,6 +138,20 @@
             margin-top: 20px;
             color: #38be14; /* Green color for section titles */
         }
+
+        /* Modal Styling */
+        .modal-content {
+            background-color: #141414;
+            color: white;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid #333;
+        }
+
+        .modal-footer {
+            border-top: 1px solid #333;
+        }
     </style>
 </head>
 <body>
@@ -136,7 +160,7 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <a class="navbar-brand text-white" href="farmerDashboard.html">
-            <img src="logo.png.jpg" alt="Kisan Connect Logo" style="width: 35px; height: auto;">
+            <img src="logo.png.jpg" alt="Kisan Connect Logo" style="width: 35px; height : auto;">
             Kisan Connect
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -160,9 +184,10 @@
 <!-- Search Section -->
 <section id="search">
     <h2>Find the Perfect Equipment</h2>
-    <form action="/search" method="GET">
+    <form id="searchForm">
         <label for="category">Category:</label>
         <select name="category" id="category">
+            <option value="all">All</option>
             <option value="tractors">Tractors</option>
             <option value="harvesters">Harvesters</option>
             <option value="sprayers">Sprayers</option>
@@ -175,63 +200,21 @@
 
         <label for="duration">Rental Duration:</label>
         <select name="duration" id="duration">
+            <option value="all">All</option>
             <option value="daily">Daily</option>
             <option value="weekly">Weekly</option>
             <option value="seasonal">Seasonal</option>
         </select>
 
-        <button type="submit">Search</button>
+        <button type="button" onclick="filterEquipment()">Search</button>
     </form>
 </section>
 
 <!-- Equipment List Section -->
 <section id="equipment-list" class="container">
     <h2 class="section-title text-center">Available Equipment</h2>
-    <div class="row justify-content-center">
-
-        <div class="col-md-3">
-            <div class="equipment-item">
-                <img src="tractor.jpg" alt="Tractor">
-                <h3>Tractor</h3>
-                <p>Perfect for plowing, tilling, and transporting materials.</p>
-                <p><strong>Price:</strong> ₹11,000/day</p>
-                <p><strong>Available Locations:</strong> Maharashtra, Punjab, Haryana</p>
-                <button onclick="bookEquipment('Tractor')">Book Now</button>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="equipment-item">
-                <img src="harvester.jpg" alt="Harvester">
-                <h3>Harvester</h3>
-                <p>Efficiently harvest your crops with our state-of-the-art machines.</p>
-                <p><strong>Price:</strong> ₹37,500/day</p>
-                <p><strong>Available Locations:</strong> Uttar Pradesh, Rajasthan, Gujarat</p>
-                <button onclick="bookEquipment('Harvester')">Book Now</button>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="equipment-item">
-                <img src="sprayer.jpg" alt="Sprayer">
-                <h3>Sprayer</h3>
-                <p>Ideal for applying fertilizers and pesticides evenly across your fields.</p>
-                <p><strong>Price:</strong> ₹8,000/day</p>
-                <p><strong>Available Locations:</strong> Karnataka, Tamil Nadu, Andhra Pradesh</p>
-                <button onclick="bookEquipment('Sprayer')">Book Now</button>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="equipment-item">
-                <img src="irrigation.jpg" alt="Irrigation System">
-                <h3>Irrigation System</h3>
-                <p>Efficiently water your crops with our advanced irrigation solutions.</p>
-                <p><strong>Price:</strong> ₹15,000/day</p>
-                <p><strong>Available Locations:</strong> Kerala, West Bengal, Assam</p>
-                <button onclick="bookEquipment('Irrigation System')">Book Now</button>
-            </div>
-        </div>
+    <div class="row justify-content-center" id="equipmentGrid">
+        <!-- Equipment items will be dynamically populated here -->
     </div>
 </section>
 
@@ -244,12 +227,82 @@
     </p>
 </footer>
 
+<!-- Booking Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bookingModalLabel">Booking Confirmation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="bookingMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Function to handle equipment booking
-    function bookEquipment(equipmentName) {
-        alert(`You have chosen to book the ${equipmentName}. Please proceed to the booking page.`);
-        // Redirect to booking page or handle further logic here
+    // Sample equipment data
+    const equipmentData = [
+        { name: "Tractor", category: "tractors", location: "Maharashtra", duration: "daily", price: "₹11,000/day", image: "tractor.jpg" },
+        { name: "Harvester", category: "harvesters", location: "Uttar Pradesh", duration: "weekly", price: "₹37,500/day", image: "harvester.jpg" },
+        { name: "Sprayer", category: "sprayers", location: "Karnataka", duration: "daily", price: "₹8,000/day", image: "sprayer.jpg" },
+        { name: "Irrigation System", category: "irrigation", location: "Kerala", duration: "seasonal", price: "₹15,000/day", image: "Irrigationsystem.jpg" },
+        { name: "Seeder", category: "seeders", location: "Gujarat", duration: "daily", price: "₹5,000/day", image: "seeder.jpg.pdf" },
+        { name: "Plow", category: "tractors", location: "Haryana", duration: "daily", price: "₹3,500/day", image: "https://via.placeholder.com/250x150" },
+        { name: "Cultivator", category: "tractors", location: "Karnataka", duration: "weekly", price: "₹4,500/day", image: "https://via.placeholder.com/250x150" },
+        { name: "Baler", category: "harvesters", location: "Punjab", duration: "seasonal", price: "₹6,000/day", image: "https://via.placeholder.com/250x150" },
+        { name: "Tiller", category: "tractors", location: "Gujarat", duration: "daily", price: "₹7,000/day", image: "https://via.placeholder.com/250x150" },
+        { name: "Fertilizer Spreader", category: "sprayers", location: "Maharashtra", duration: "weekly", price: "₹2,500/day", image: "https://via.placeholder.com/250x150" }
+    ];
+
+    // Function to render equipment items
+    function renderEquipment(items) {
+        const equipmentGrid = document.getElementById("equipmentGrid");
+        equipmentGrid.innerHTML = items.map(item => `
+            <div class="col-md-3 mb-4">
+                <div class="equipment-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <h3>${item.name}</h3>
+                    <p>${item.description || "Efficient and reliable equipment."}</p>
+                    <p><strong>Price:</strong> ${item.price}</p>
+                    <p><strong>Available Locations:</strong> ${item.location}</p>
+                    <button onclick="bookEquipment('${item.name}')">Book Now</button>
+                </div>
+            </div>
+        `).join("");
     }
+
+    // Function to filter equipment
+    function filterEquipment() {
+        const category = document.getElementById("category").value;
+        const location = document.getElementById("location").value.toLowerCase();
+        const duration = document.getElementById("duration").value;
+
+        const filteredItems = equipmentData.filter(item => {
+            return (category === "all" || item.category === category) &&
+                   (location === "" || item.location.toLowerCase().includes(location)) &&
+                   (duration === "all" || item.duration === duration);
+        });
+
+        renderEquipment(filteredItems);
+    }
+
+    // Function to handle booking
+    function bookEquipment(equipmentName) {
+        const bookingMessage = document.getElementById("bookingMessage");
+        bookingMessage.textContent = `You have successfully booked the ${equipmentName}.`;
+        const bookingModal = new bootstrap.Modal(document.getElementById("bookingModal"));
+        bookingModal.show();
+    }
+
+    // Initial render
+    renderEquipment(equipmentData);
 </script>
 </body>
 </html>
