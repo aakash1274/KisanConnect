@@ -384,8 +384,34 @@
         }
 
         function redirectToDealPage() {
-        window.location.href = 'make-deal-popup.html';
+            window.location.href = 'make-deal-popup.html';
         }
+
+        // Voice recognition setup
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+
+        recognition.continuous = true;
+
+        recognition.onstart = function() {
+            console.log('Voice recognition started. Try speaking into the microphone.');
+        };
+
+        recognition.onresult = function(event) {
+            const transcript = event.results[event.resultIndex][0].transcript.toLowerCase();
+            console.log('You said: ', transcript);
+            document.getElementById('searchBar').value = transcript; // Populate search input
+            searchFruits(); // Trigger search
+        };
+
+        recognition.onerror = function(event) {
+            console.error('Error occurred in recognition: ' + event.error);
+        };
+
+        // Start voice recognition on search icon click
+        document.querySelector('.search-icon').addEventListener('click', () => {
+            recognition.start();
+        });
 
         // Initial render
         createFruitCards();

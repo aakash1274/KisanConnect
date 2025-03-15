@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organic Vegetable Marketplace</title>
+    <title>Fresh Vegetables Marketplace</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -16,22 +16,6 @@
         body {
             background-color: #141414;
             color: #ffffff;
-        }
-
-        .navbar {
-            background-color: #0d091e;
-            padding: 1rem;
-        }
-
-        .navbar a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 600;
-        }
-
-        .navbar a:hover {
-            color: #38ef7d;
         }
 
         .container {
@@ -84,14 +68,14 @@
             z-index: 1;
         }
 
-        .fruit-grid {
+        .vegetable-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             padding: 20px;
         }
 
-        .fruit-card {
+        .vegetable-card {
             background: #1a1a1a;
             border-radius: 15px;
             overflow: hidden;
@@ -100,28 +84,28 @@
             cursor: pointer;
         }
 
-        .fruit-card:hover {
+        .vegetable-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
 
-        .fruit-image {
+        .vegetable-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
 
-        .fruit-info {
+        .vegetable-info {
             padding: 20px;
         }
 
-        .fruit-name {
+        .vegetable-name {
             font-size: 1.5rem;
             color: #38ef7d;
             margin-bottom: 10px;
         }
 
-        .fruit-details {
+        .vegetable-details {
             color: #ccc;
             margin-bottom: 5px;
         }
@@ -152,7 +136,7 @@
             border-radius: 5px;
             cursor: pointer;
             margin: 20px;
-            display : flex;
+            display: flex;
             align-items: center;
             gap: 10px;
         }
@@ -166,7 +150,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0 ,0.3);
         }
 
-        .fruit-detail-image {
+        .vegetable-detail-image {
             width: 100%;
             height: 300px;
             object-fit: cover;
@@ -245,7 +229,7 @@
         }
 
         @media (max-width: 768px) {
-            .fruit-grid {
+            .vegetable-grid {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
 
@@ -268,16 +252,16 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1>Fresh Vegetables</h1>
+            <h1>Fresh Vegetables Marketplace</h1>
             <p>Connect directly with farmers for fresh, organic vegetables</p>
         </header>
 
         <div class="search-bar">
             <input type="text" class="search-input" id="searchBar" placeholder="Search for vegetables...">
-            <span class="search-icon" onclick="searchFruits()">🔍</span>
+            <span class="search-icon" onclick="searchVegetables()">🔍</span>
         </div>
 
-        <div class="fruit-grid" id="fruitGrid"></div>
+        <div class="vegetable-grid" id="vegetableGrid"></div>
     </div>
 
     <div class="detailed-view" id="detailedView">
@@ -286,83 +270,77 @@
     </div>
 
     <script>
-        const fruitsData = [
+        const vegetablesData = [
             {
                 id: 1,
-                name: 'Carrots',
-                variety: 'Nantes',
+                name: 'Tomatoes',
+                variety: 'Roma',
                 season: 'Year-round',
                 image: '/api/placeholder/400/250',
-                description: 'Fresh and crunchy Nantes carrots, perfect for salads and cooking.',
+                description: 'Fresh Roma tomatoes, perfect for sauces and salads.',
                 farmers: [
                     {
-                        name: 'Rajesh Kumar',
-                        location: 'Nasik, Maharashtra',
-                        quantity: '500 kg available',
- rating: 4.8
-                    },
-                    {
-                        name: 'Suresh Patel',
-                        location: 'Valsad, Gujarat',
-                        quantity: '800 kg available',
-                        rating: 4.6
+                        name: 'Anil Sharma',
+                        location: 'Pune, Maharashtra',
+                        quantity: '300 kg available',
+                        rating: 4.7
                     }
                 ]
             },
             {
                 id: 2,
-                name: 'Spinach',
-                variety: 'Baby Spinach',
-                season: 'Winter',
+                name: 'Carrots',
+                variety: 'Nantes',
+                season: 'November-March',
                 image: '/api/placeholder/400/250',
-                description: 'Tender and fresh baby spinach leaves, high in nutrients.',
+                description: 'Crunchy and sweet Nantes carrots, ideal for snacking.',
                 farmers: [
                     {
-                        name: 'Vikram Singh',
-                        location: 'Kinnaur, Himachal Pradesh',
-                        quantity: '1000 kg available',
-                        rating: 4.9
+                        name: 'Ravi Kumar',
+                        location: 'Indore, Madhya Pradesh',
+                        quantity: '500 kg available',
+                        rating: 4.8
                     }
                 ]
             }
         ];
 
-        function createFruitCards() {
-            const fruitGrid = document.getElementById('fruitGrid');
-            fruitGrid.innerHTML = fruitsData.map(fruit => `
-                <div class="fruit-card" onclick="showDetailedView(${fruit.id})">
-                    <img src="${fruit.image}" alt="${fruit.name}" class="fruit-image">
-                    <div class="fruit-info">
-                        <h3 class="fruit-name">${fruit.name}</h3>
-                        <p class="fruit-details">Variety: ${fruit.variety}</p>
-                        <p class="fruit-details">Season: ${fruit.season}</p>
-                        <p class="farmer-count">${fruit.farmers.length} Farmers Available</p>
+        function createVegetableCards() {
+            const vegetableGrid = document.getElementById('vegetableGrid');
+            vegetableGrid.innerHTML = vegetablesData.map(vegetable => `
+                <div class="vegetable-card" onclick="showDetailedView(${vegetable.id})">
+                    <img src="${vegetable.image}" alt="${vegetable.name}" class="vegetable-image">
+                    <div class="vegetable-info">
+                        <h3 class="vegetable-name">${vegetable.name}</h3>
+                        <p class="vegetable-details">Variety: ${vegetable.variety}</p>
+                        <p class="vegetable-details">Season: ${vegetable.season}</p>
+                        <p class="farmer-count">${vegetable.farmers.length} Farmers Available</p>
                     </div>
                 </div>
             `).join('');
         }
 
-        function showDetailedView(fruitId) {
-            const fruit = fruitsData.find(f => f.id === fruitId);
+        function showDetailedView(vegetableId) {
+            const vegetable = vegetablesData.find(v => v.id === vegetableId);
             const detailedView = document.getElementById('detailedView');
             const detailContent = document.getElementById('detailContent');
 
             detailContent.innerHTML = `
-                <img src="${fruit.image}" alt="${fruit.name}" class="fruit-detail-image">
-                <h2 class="fruit-name">${fruit.name}</h2>
-                <p class="fruit-details"><strong>Variety:</strong> ${fruit.variety}</p>
-                <p class="fruit-details"><strong>Season:</strong> ${fruit.season}</p>
-                <p class="fruit-details"><strong>Description:</strong> ${fruit.description}</p>
+                <img src="${vegetable.image}" alt="${vegetable.name}" class="vegetable-detail-image">
+                <h2 class="vegetable-name">${vegetable.name}</h2>
+                <p class="vegetable-details"><strong>Variety:</strong> ${vegetable.variety}</p>
+                <p class="vegetable-details"><strong>Season:</strong> ${vegetable.season}</p>
+                <p class="vegetable-details"><strong>Description:</strong> ${vegetable.description}</p>
 
                 <h3 style="margin: 20px 0;">Available Farmers</h3>
                 <div class="farmers-list">
-                    ${fruit.farmers.map(farmer => `
+                    ${vegetable.farmers.map(farmer => `
                         <div class="farmer-card">
                             <div class="farmer-info">
                                 <p class="farmer-name">${farmer.name}</p>
-                                <p class="fruit-details"><strong>Location:</strong> ${farmer.location}</p>
-                                <p class="fruit-details"><strong>Quantity:</strong> ${farmer.quantity}</p>
-                                <p class="fruit-details"><strong>Rating:</strong> <span class="rating">${'⭐'.repeat(Math.round(farmer.rating))}</span> ${farmer.rating}</p>
+                                <p class="vegetable-details"><strong>Location:</strong> ${farmer.location}</p>
+                                <p class="vegetable-details"><strong>Quantity:</strong> ${farmer.quantity}</p>
+                                <p class="vegetable-details"><strong>Rating:</strong> <span class="rating">${'⭐'.repeat(Math.round(farmer.rating))}</span> ${farmer.rating}</p>
                             </div>
                             <div class="button-group">
                                 <button class="chat-button">Chat</button>
@@ -379,32 +357,58 @@
             document.getElementById('detailedView').style.display = 'none';
         }
 
-        function searchFruits() {
+        function searchVegetables() {
             const query = document.getElementById('searchBar').value.toLowerCase();
-            const filteredFruits = fruitsData.filter(fruit => 
-                fruit.name.toLowerCase().includes(query) || 
-                fruit.variety.toLowerCase().includes(query)
+            const filteredVegetables = vegetablesData.filter(vegetable => 
+                vegetable.name.toLowerCase().includes(query) || 
+                vegetable.variety.toLowerCase().includes(query)
             );
-            const fruitGrid = document.getElementById('fruitGrid');
-            fruitGrid.innerHTML = filteredFruits.map(fruit => `
-                <div class="fruit-card" onclick="showDetailedView(${fruit.id})">
-                    <img src="${fruit.image}" alt="${fruit.name}" class="fruit-image">
-                    <div class="fruit-info">
-                        <h3 class="fruit-name">${fruit.name}</h3>
-                        <p class="fruit-details">Variety: ${fruit.variety}</p>
-                        <p class="fruit-details">Season: ${fruit.season}</p>
-                        <p class="farmer-count">${fruit.farmers.length} Farmers Available</p>
+            const vegetableGrid = document.getElementById('vegetableGrid');
+            vegetableGrid.innerHTML = filteredVegetables.map(vegetable => `
+                <div class="vegetable-card" onclick="showDetailedView(${vegetable.id})">
+                    <img src="${vegetable.image}" alt="${vegetable.name}" class="vegetable-image">
+                    <div class="vegetable-info">
+                        <h3 class="vegetable-name">${vegetable.name}</h3>
+                        <p class="vegetable-details">Variety: ${vegetable.variety}</p>
+                        <p class="vegetable-details">Season: ${vegetable.season}</p>
+                        <p class="farmer-count">${vegetable.farmers.length} Farmers Available</p>
                     </div>
                 </div>
             `).join('');
         }
 
         function redirectToDealPage() {
-        window.location.href = 'make-deal-popup.html';
+            window.location.href = 'make-deal-popup.html';
         }
 
+        // Voice recognition setup
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+
+        recognition.continuous = true;
+
+        recognition.onstart = function() {
+            console.log('Voice recognition started. Try speaking into the microphone.');
+        };
+
+        recognition.onresult = function(event) {
+            const transcript = event.results[event.resultIndex][0].transcript.toLowerCase();
+            console.log('You said: ', transcript);
+            document.getElementById('searchBar').value = transcript; // Populate search input
+            searchVegetables(); // Trigger search
+        };
+
+        recognition.onerror = function(event) {
+            console.error('Error occurred in recognition: ' + event.error);
+        };
+
+        // Start voice recognition on search icon click
+        document.querySelector('.search-icon').addEventListener('click', () => {
+            recognition.start();
+        });
+
         // Initial render
-        createFruitCards();
+        createVegetableCards();
     </script>
 </body>
 </html>

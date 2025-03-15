@@ -59,6 +59,26 @@
         li {
             margin: 10px 0; /* Spacing between list items */
         }
+        #start-button {
+            background-color: #ff4757;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: background-color 0.3s;
+            position: fixed;
+            bottom: 30px; /* Adjusted for better visibility */
+            right: 30px; /* Adjusted for better visibility */
+            z-index: 1000; /* Ensures the button is on top of other elements */
+        }
+        #start-button:hover {
+            background-color: #e84118;
+        }
     </style>
 </head>
 <body>
@@ -94,7 +114,7 @@
         <h3>Our Mission</h3>
         <p>To empower farmers and provide buyers with access to quality agricultural products.</p>
         
- <h3>Our Vision</h3>
+        <h3>Our Vision</h3>
         <p>To be the leading online marketplace for agricultural products, fostering sustainable practices and supporting local farmers.</p>
         
         <h3>Our Values</h3>
@@ -112,7 +132,69 @@
         <p>Customer Support: 9999999999 | Email: customercare@kisankonnect.in</p>
     </footer>
 
+    <!-- Voice Navigation Button -->
+    <button id="start-button" class="btn btn-primary">
+        <i class="fas fa-microphone"></i>
+    </button>
+
     <!-- Scripts -->
+    <script>
+        // Voice recognition setup
+        const startButton = document.getElementById('start-button');
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+
+        recognition.continuous = true;
+
+        recognition.onstart = function() {
+            console.log('Voice recognition started. Try speaking into the microphone.');
+            startButton.innerHTML = '<i class="fas fa-microphone-slash"></i>'; // Change button icon
+        };
+
+        recognition.onresult = function(event) {
+            const transcript = event.results[event.resultIndex][0].transcript.toLowerCase();
+            console.log('You said: ', transcript);
+            handleVoiceCommand(transcript);
+        };
+
+        recognition.onerror = function(event) {
+            console.error('Error occurred in recognition: ' + event.error);
+        };
+
+        // Handle voice commands
+        function handleVoiceCommand(command) {
+            if (command.includes('open home')) {
+                speak('Navigating to home.');
+                redirectTo('index.html');
+            } else if (command.includes('tell me about us')) {
+                speak('Navigating to about us.');
+                redirectTo('about.html');
+            } else if (command.includes('contact support')) {
+                speak('Navigating to contact us.');
+                redirectTo('contact.html');
+            } else {
+                speak('Sorry, I did not understand that command.');
+            }
+        }
+
+        // Speak back to the user
+        function speak(text) {
+            const speech = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(speech);
+        }
+
+        // Start voice recognition on button click
+        startButton.addEventListener('click', () => {
+            if (recognition) {
+                recognition.start();
+            }
+        });
+
+        recognition.onend = function() {
+            startButton.innerHTML = '<i class="fas fa-microphone"></i>'; // Reset button icon
+        };
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
