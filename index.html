@@ -399,10 +399,13 @@
         if (command.includes('open home')) {
             speak('Navigating to home.');
             redirectTo('index.html');
-        } else if (command.includes('tell me about us')) {
+        } else if (command.includes('about us')) {
             speak('Navigating to about us.');
             redirectTo('about.html');
-        } else if (command.includes('show guidelines')) {
+        } else if (command.includes('weather updates')) {
+            speak('Navigating to weather updates.');
+            redirectTo('weather-updates.html');
+        }else if (command.includes('show guidelines')) {
             speak('Navigating to guidelines.');
             redirectTo('guidelines.html');
         } else if (command.includes('contact support')) {
@@ -424,7 +427,7 @@
             speak('Stopping voice recognition.');
             recognition.stop();
         } else {
-            speak('Sorry, I did not understand that command Ms Sri Tejasri.');
+            speak('Sorry, I did not understand that command.');
         }
     }
 
