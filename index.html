@@ -397,7 +397,7 @@
             recognition.start();
             document.getElementById('start-button').innerHTML = '<i class="fas fa-stop" style="color: #ff0000;"></i>';
             isListening = true;
-            speak("Hi Aakash! I'm listening. Say 'list commands' to see what I can do.");
+            speak("Hi Aakash! I'm listening.");
         } catch (error) {
             console.error('Recognition error:', error);
             resetRecognition();
