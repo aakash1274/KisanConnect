@@ -202,6 +202,7 @@
             background-color: #e84118;
         }
     </style>
+    <script src="config.js"></script>
 </head>
 <body>
 
@@ -373,68 +374,310 @@
     });
 
     // Voice recognition setup
-    const startButton = document.getElementById('start-button');
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new SpeechRecognition();
+    
+    recognition.continuous = false; // Change to false to prevent overlapping
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+    let isListening = false;
 
-    recognition.continuous = true;
-
-    recognition.onstart = function() {
-        console.log('Voice recognition started. Try speaking into the microphone.');
-        startButton.innerHTML = '<i class="fas fa-microphone-slash"></i>'; // Change button icon
-    };
-
-    recognition.onresult = function(event) {
-        const transcript = event.results[event.resultIndex][0].transcript.toLowerCase();
-        console.log('You said: ', transcript);
-        handleVoiceCommand(transcript);
-    };
-
-    recognition.onerror = function(event) {
-        console.error('Error occurred in recognition: ' + event.error);
-    };
-
-    // Handle voice commands
-    function handleVoiceCommand(command) {
-        if (command.includes('open home')) {
-            speak('Navigating to home.');
-            redirectTo('index.html');
-        } else if (command.includes('about us')) {
-            speak('Navigating to about us.');
-            redirectTo('about.html');
-        } else if (command.includes('weather updates')) {
-            speak('Navigating to weather updates.');
-            redirectTo('weather-updates.html');
-        }else if (command.includes('show guidelines')) {
-            speak('Navigating to guidelines.');
-            redirectTo('guidelines.html');
-        } else if (command.includes('contact support')) {
-            speak('Navigating to contact us.');
-            redirectTo('contact.html');
-        } else if (command.includes('view crops')) {
-            speak('Navigating to crops.');
-            redirectTo('crops.html');
-        } else if (command.includes('find equipment')) {
-            speak('Navigating to equipment rentals.');
-            redirectTo('equipment-rentals.html');
-        } else if (command.includes('fresh produce')) {
-            speak('Navigating to fresh produce.');
-            redirectTo('produce.html');
-        } else if (command.includes('register') || command.includes('login')) {
-            speak('Navigating to register or login.');
-            redirectTo('register.html');
-        } else if (command.includes('stop listening')) {
-            speak('Stopping voice recognition.');
-            recognition.stop();
+    function toggleSpeechRecognition() {
+        if (!isListening) {
+            startRecognition();
         } else {
-            speak('Sorry, I did not understand that command.');
+            stopRecognition();
         }
     }
 
-    // Speak back to the user
+    function startRecognition() {
+        try {
+            window.speechSynthesis.cancel(); // Cancel any ongoing speech
+            recognition.abort(); // Stop any existing recognition
+            recognition.start();
+            document.getElementById('start-button').innerHTML = '<i class="fas fa-stop" style="color: #ff0000;"></i>';
+            isListening = true;
+            speak("Hi Aakash! I'm listening. Say 'list commands' to see what I can do.");
+        } catch (error) {
+            console.error('Recognition error:', error);
+            resetRecognition();
+        }
+    }
+
+    function stopRecognition() {
+        window.speechSynthesis.cancel(); // Cancel any ongoing speech
+        recognition.abort(); // Use abort instead of stop
+        resetRecognition();
+        speak("Voice assistant stopped. Tap the button to start again.");
+    }
+
+    function resetRecognition() {
+        document.getElementById('start-button').innerHTML = '<i class="fas fa-microphone"></i>';
+        isListening = false;
+    }
+
+    // Initialize voice button with proper event handler
+    document.addEventListener('DOMContentLoaded', function() {
+        const startButton = document.getElementById('start-button');
+        startButton.disabled = false;
+        startButton.style.opacity = '1';
+        startButton.style.cursor = 'pointer';
+        
+        // Remove any existing listeners and add new one
+        startButton.replaceWith(startButton.cloneNode(true));
+        document.getElementById('start-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleSpeechRecognition();
+        });
+    });
+
+    recognition.onstart = () => {
+        console.log('Voice recognition active');
+        isListening = true;
+    };
+
+    recognition.onend = () => {
+        console.log('Voice recognition ended');
+        if (isListening) {
+            try {
+                setTimeout(() => {
+                    recognition.start();
+                }, 100);
+            } catch (error) {
+                console.error('Failed to restart recognition:', error);
+                resetRecognition();
+            }
+        } else {
+            resetRecognition();
+        }
+    };
+
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        console.log('Heard:', transcript);
+        
+        // Navigation commands
+        if (transcript.includes('go to') || transcript.includes('open')) {
+            if (transcript.includes('about')) {
+                window.location.href = 'about.html';
+            } else if (transcript.includes('register')) {
+                window.location.href = 'register.html';
+            } else if (transcript.includes('equipment')) {
+                window.location.href = 'equipment-rentals.html';
+            } else if (transcript.includes('market')) {
+                window.location.href = 'market-trends.html';
+            } else if (transcript.includes('home')) {
+                window.location.href = 'index.html';
+            }
+        }
+        // Information commands
+        else if (transcript.includes('weather')) {
+            getWeatherUpdate();
+        } else if (transcript.includes('price') || transcript.includes('rate')) {
+            getCropPrices();
+        } else if (transcript.includes('news')) {
+            getLatestNews();
+        } else if (transcript.includes('help') || transcript.includes('commands')) {
+            listAvailableCommands();
+        } else {
+            handleAIConversation(transcript);
+        }
+    };
+
+    // Simplified speech queue
+    let isSpeaking = false;
+    const speechQueue = [];
+
     function speak(text) {
+        if (!text) return;
+        
+        speechQueue.push(text);
+        if (!isSpeaking) {
+            processSpeechQueue();
+        }
+    }
+
+    function processSpeechQueue() {
+        if (speechQueue.length === 0) {
+            isSpeaking = false;
+            return;
+        }
+
+        isSpeaking = true;
+        const text = speechQueue.shift();
         const speech = new SpeechSynthesisUtterance(text);
+        
+        speech.onend = () => {
+            setTimeout(() => {
+                isSpeaking = false;
+                processSpeechQueue();
+            }, 250);
+        };
+
         window.speechSynthesis.speak(speech);
+    }
+
+    function handleAIConversation(command) {
+        // Quick redirections for specific keywords
+        const redirects = {
+            'market trends': 'market-trends.html',
+            'market update': 'market-trends.html',
+            'weather': 'weather-updates.html',
+            'weather update': 'weather-updates.html',
+            'equipment': 'equipment-rentals.html',
+            'equipment rental': 'equipment-rentals.html',
+            'crops': 'organic-fruits.html',
+            'crop prices': 'market-trends.html',
+            'news': 'market-trends.html',
+            'latest news': 'market-trends.html'
+        };
+
+        // Check for redirects first
+        for (let key in redirects) {
+            if (command.includes(key)) {
+                speak(`Taking you to ${key} page, Aakash`);
+                window.location.href = redirects[key];
+                return;
+            }
+        }
+
+        // Regular conversation responses
+        const responses = {
+            'hi': 'Hello Aakash! How can I assist you today?',
+            'hello': 'Hi Aakash! How may I help you?',
+            'how are you': 'I am doing well, thank you for asking Aakash!',
+            'what can you do': listAvailableCommands,
+            'help': listAvailableCommands,
+            'commands': listAvailableCommands,
+            'list commands': listAvailableCommands,
+            'goodbye': 'Goodbye Aakash! Have a great day!',
+            'thank you': 'You are welcome Aakash!'
+        };
+        
+        for (let key in responses) {
+            if (command.includes(key)) {
+                if (typeof responses[key] === 'function') {
+                    responses[key]();
+                } else {
+                    speak(responses[key]);
+                }
+                return;
+            }
+        }
+        
+        // If command not recognized
+        speak("I'm not sure about that Aakash. Try these commands:");
+        listQuickCommands();
+    }
+
+    function listQuickCommands() {
+        speak(`
+            Quick command guide for you Aakash:
+            Say "market trends" for market prices,
+            "weather update" for weather info,
+            "equipment rental" for tools,
+            "latest news" for updates,
+            or "help" for full command list
+        `);
+    }
+
+    function listAvailableCommands() {
+        const commandGroups = {
+            "Navigation Commands": [
+                "Go to or open: about, register, equipment, market, home",
+                "Market trends or market update - For market information",
+                "Weather or weather update - For weather forecast",
+                "Equipment or equipment rental - For farming tools",
+                "Crops - For crop information",
+                "Crop prices - For current rates",
+                "News or latest news - For agricultural updates"
+            ],
+            "General Commands": [
+                "Hi or Hello - To start conversation",
+                "How are you - For casual chat",
+                "What can you do - To learn my capabilities",
+                "Help or Commands - To see this list",
+                "Thank you - To end conversation",
+                "Goodbye - To stop the assistant"
+            ]
+        };
+
+        speak("Here are all available commands, Aakash:");
+        
+        Object.entries(commandGroups).forEach(([group, commands], groupIndex) => {
+            setTimeout(() => {
+                speak(group + ":");
+                commands.forEach((command, cmdIndex) => {
+                    setTimeout(() => speak(command), cmdIndex * 1000);
+                });
+            }, groupIndex * 7000);
+        });
+    }
+
+    // Optimize speech synthesis for quicker response
+    function speak(text) {
+        if (!text) return;
+        
+        const speech = new SpeechSynthesisUtterance(text);
+        speech.rate = 1.2; // Slightly faster speech
+        speech.pitch = 1.0;
+        window.speechSynthesis.cancel(); // Cancel any ongoing speech
+        window.speechSynthesis.speak(speech);
+    }
+
+    // Weather updates using local data
+    async function getWeatherUpdate() {
+        try {
+            speak(`Current temperature in Guntur is 36 degrees Celsius and the weather is Sunny`);
+        } catch (error) {
+            speak('Sorry, I could not fetch the weather information at this moment.');
+        }
+    }
+
+    // News updates using local data
+    async function getLatestNews() {
+        try {
+            speak('Here are the latest agricultural headlines:');
+            const randomNews = config.AGRICULTURE_NEWS[Math.floor(Math.random() * config.AGRICULTURE_NEWS.length)];
+            speak(randomNews);
+        } catch (error) {
+            speak('Sorry, I could not fetch the latest news at this moment.');
+        }
+    }
+
+    // Crop prices using local data
+    async function getCropPrices() {
+        try {
+            speak('Here are the current market prices:');
+            const prices = config.CROP_PRICES;
+            const randomCrop = Object.keys(prices)[Math.floor(Math.random() * Object.keys(prices).length)];
+            speak(`${randomCrop} is selling at ${prices[randomCrop]}`);
+        } catch (error) {
+            speak('Sorry, I could not fetch the current market prices at this moment.');
+        }
+    }
+
+    // News updates using local data
+    async function getLatestNews() {
+        try {
+            speak('Here are the latest agricultural headlines:');
+            const randomNews = config.AGRICULTURE_NEWS[Math.floor(Math.random() * config.AGRICULTURE_NEWS.length)];
+            speak(randomNews);
+        } catch (error) {
+            speak('Sorry, I could not fetch the latest news at this moment.');
+        }
+    }
+
+    // Crop prices using local data
+    async function getCropPrices() {
+        try {
+            speak('Here are the current market prices:');
+            const prices = config.CROP_PRICES;
+            const randomCrop = Object.keys(prices)[Math.floor(Math.random() * Object.keys(prices).length)];
+            speak(`${randomCrop} is selling at ${prices[randomCrop]}`);
+        } catch (error) {
+            speak('Sorry, I could not fetch the current market prices at this moment.');
+        }
     }
 
     // Start voice recognition on button click
@@ -446,9 +689,6 @@
 
     recognition.onend = function() {
         startButton.innerHTML = '<i class="fas fa-microphone"></i>'; // Reset button icon
-    };
-</script>
-
     };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

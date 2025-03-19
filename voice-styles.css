@@ -1,0 +1,26 @@
+#start-button {
+    background-color: #ff4757;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+#start-button:hover {
+    background-color: #e84118;
+}
+
+#start-button i {
+    color: white;
+    font-size: 24px;
+}
